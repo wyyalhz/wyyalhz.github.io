@@ -185,7 +185,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/c/" style="color: #ff7d73">
+                <a href="/tags/c/" style="color: #00bcd4">
                     c++
                 </a>
             </span>
@@ -198,7 +198,9 @@
         <p>为了应付学校c++期末考试而而写，随上课进度更新。</p>
 <span id="more"></span>
 
-<h2 id="2025-3-24"><a href="#2025-3-24" class="headerlink" title="2025.3.24"></a>2025.3.24</h2><h3 id="一、static（复习"><a href="#一、static（复习" class="headerlink" title="一、static（复习"></a>一、static（复习</h3><p>1.static 的作用区间是当前文件整个程序的运行期间。static只被创建一次<br>2.static, const, inline只在一个编译单元起作用（所以inline函数应该定义在头文件中）<br>3.class中static变量初始化要在class外，且不要再加static；static成员变量不可以在类内初始化，因为static成员变量是属于类的，不是属于对象的，所以不能在类内初始化，否则会报错</p>
+<h2 id="2025-3-24"><a href="#2025-3-24" class="headerlink" title="2025.3.24"></a>2025.3.24</h2><h3 id="一、static（复习"><a href="#一、static（复习" class="headerlink" title="一、static（复习"></a>一、static（复习</h3><p>1.static 的作用区间是当前文件整个程序的运行期间。static只被创建一次</p>
+<p>2.static, const, inline只在一个编译单元起作用（所以inline函数应该定义在头文件中）</p>
+<p>3.class中static变量初始化要在class外，且不要再加static；static成员变量不可以在类内初始化，因为static成员变量是属于类的，不是属于对象的，所以不能在类内初始化，否则会报错</p>
 <pre><code class="cpp">class A&#123;
     static int a;
 &#125;;
@@ -209,7 +211,10 @@ int A::a = 0;
     static const int a = 0;
 &#125;;
 </code></pre>
-<p>总结：static成员变量可以在类外初始化，也可以在类内初始化，但是在类内初始化的static成员变量必须是const类型<br>4.static成员函数在.h文件中声明，在.cpp文件中定义，定义时不要加static，因为声明时已经加了，否则会报错<br>5.static成员函数只能访问static成员变量，没有this指针，不用创建具体对象就可以调用（因为static成员函数不属于任何对象，只创建一次，所以不能访问非static成员变量。<br>6.static成员函数不能被const修饰，因为const成员函数是为了保护对象的成员变量，而static成员函数不属于任何对象，所以没有必要保护</p>
+<p>总结：static成员变量可以在类外初始化，也可以在类内初始化，但是在类内初始化的static成员变量必须是const类型</p>
+<p>4.static成员函数在.h文件中声明，在.cpp文件中定义，定义时不要加static，因为声明时已经加了，否则会报错</p>
+<p>5.static成员函数只能访问static成员变量，没有this指针，不用创建具体对象就可以调用（因为static成员函数不属于任何对象，只创建一次，所以不能访问非static成员变量。</p>
+<p>6.static成员函数不能被const修饰，因为const成员函数是为了保护对象的成员变量，而static成员函数不属于任何对象，所以没有必要保护</p>
 <h3 id="二、namespace"><a href="#二、namespace" class="headerlink" title="二、namespace"></a>二、namespace</h3><p>1.using namespace 不要写在头文件中，会污染命名空间，不然.cpp一下子全打开了，容易发生冲突</p>
 <p>2.一个namespace中有多个函数，可以用哪个using哪个，不用全写</p>
 <pre><code class="cpp">namespace A&#123;
@@ -244,12 +249,41 @@ namespace A&#123;
     void f2();
 &#125;
 </code></pre>
-<h3 id="三、指针和引用（复习"><a href="#三、指针和引用（复习" class="headerlink" title="三、指针和引用（复习"></a>三、指针和引用（复习</h3><p>·指针和引用的区别：指针可以指向空，引用不可以；指针可以改变指向，引用不可以；引用更安全，指针更灵活<br>·指针要初始化，防止野指针。可以用具体类型的指针初始化void指针，但不能用void指针初始化具体类型的指针，因为void*指针是无类型指针（除非强制类型转换）<br>·函数返回指针或引用时，不要返回局部变量的指针或引用，因为局部变量在函数结束后会被释放。return static变量或new出来的变量是安全的，因为static变量在程序结束后才会被释放，new出来的变量需要手动释放<br>·引用一定要初始化为一个对象，不然会报错，但如果是const引用，可以初始化为一个常量（这时编译器会自动创建一个临时变量）</p>
+<h3 id="三、指针和引用（复习"><a href="#三、指针和引用（复习" class="headerlink" title="三、指针和引用（复习"></a>三、指针和引用（复习</h3><p>1.指针和引用的区别：指针可以指向空，引用不可以；指针可以改变指向，引用不可以；引用更安全，指针更灵活</p>
+<p>2.指针要初始化，防止野指针。可以用具体类型的指针初始化void指针，但不能用void指针初始化具体类型的指针，因为void*指针是无类型指针（除非强制类型转换）</p>
+<p>3.函数返回指针或引用时，不要返回局部变量的指针或引用，因为局部变量在函数结束后会被释放。return static变量或new出来的变量是安全的，因为static变量在程序结束后才会被释放，new出来的变量需要手动释放</p>
+<p>4.引用一定要初始化为一个对象，不然会报错，但如果是const引用，可以初始化为一个常量（这时编译器会自动创建一个临时变量）</p>
 <h3 id="四、拷贝函数"><a href="#四、拷贝函数" class="headerlink" title="四、拷贝函数"></a>四、拷贝函数</h3><p>1.拷贝函数的作用是在对象被创建时，将一个对象的值赋给另一个对象，本质是一个构造函数，一般格式为X::X(const X&amp; x):a(x.a),b(x.b){}，其中a,b是对象的成员变量，a和b要写在初始化列表中</p>
-<p>2.拷贝构造函数被调用的情况：1.用一个对象初始化另一个对象 2.对象作为函数参数传递 3.对象作为函数返回值(取决于编译器是否优化)</p>
+<p>2.拷贝构造函数被调用的情况：1.用一个对象初始化另一个对象（一定注意是初始化！这是一个正在创建中的对象而不是已经有的对象！像b&#x3D;a两个已有对象就会调用赋值函数而不是拷贝函数） 2.对象作为函数参数传递 3.对象作为函数返回值(取决于编译器是否优化)</p>
 <p>3.如果是两个已经创建的对象，直接用&#x3D;赋值，会调用赋值函数，而不是拷贝函数，赋值函数的格式为X&amp; operator&#x3D;(const X&amp; x){a&#x3D;x.a;b&#x3D;x.b;return *this;}</p>
-<h3 id="五、运算符重载"><a href="#五、运算符重载" class="headerlink" title="五、运算符重载"></a>五、运算符重载</h3><p>1.+&#x3D;重载时，返回值要是引用，不然会创建一个临时变量，浪费空间，还可以连续+&#x3D;，如果不是引用，就会报错，原因是+&#x3D;返回的是一个临时变量，而临时变量不能作为左值<br>2.一元运算符重载建议用成员函数，二元运算符重载建议用友元函数</p>
+<p>4.如果类中有指针成员变量，拷贝构造函数和赋值函数要深拷贝，否则会出现浅拷贝的问题，导致内存泄漏或重复释放内存。深拷贝的格式为X::X(const X&amp; x):a(new int(*x.a)),b(x.b){}，其中a是指针成员变量，b是普通成员变量<br>（浅拷贝导致重复释放例子可见3.26作业：英文教材ex11_17）</p>
+<pre><code class="cpp">class A&#123;
+    int* a;
+    int b;
+public:
+    A(int x, int y):a(new int(x)),b(y)&#123;&#125; // 构造函数
+    A(const A&amp; x):a(new int(*x.a)),b(x.b)&#123;&#125; // 拷贝构造函数
+    A&amp; operator=(const A&amp; x)&#123; // 赋值函数
+        if(this != &amp;x)&#123; // 防止自赋值
+            delete a; // 释放原来的内存
+            a = new int(*x.a); // 深拷贝
+            b = x.b;
+        &#125;
+        return *this;
+    &#125;
+    ~A()&#123;delete a;&#125; // 析构函数
+&#125;;
+</code></pre>
+<p>5.编译器自动生成的拷贝构造是“逐个成员变量”调用拷贝构造的。如果对象中存在另一个类对象的成员变量，例如Class B中有Class A的对象，那么编译器会自动调用Class A的拷贝构造函数来拷贝Class B中的Class A对象。</p>
+<h3 id="五、运算符重载"><a href="#五、运算符重载" class="headerlink" title="五、运算符重载"></a>五、运算符重载</h3><p>1.+&#x3D;重载时，返回值要是引用，不然会创建一个临时变量，浪费空间，还可以连续+&#x3D;，如果不是引用，就会报错，原因是+&#x3D;返回的是一个临时变量，而临时变量不能作为左值</p>
+<p>2.一元运算符重载建议用成员函数，二元运算符重载建议用友元函数</p>
 <h3 id="未归类"><a href="#未归类" class="headerlink" title="未归类"></a>未归类</h3><p>1.inline函数必须在头文件中定义，否则会报错</p>
+<p>2.在 delete ptr; 之后写 ptr &#x3D; nullptr; 是一个 良好的编程习惯，即使 delete 本身已经释放了内存。</p>
+<pre><code class="cpp">int* ptr = new int(10);
+delete ptr;
+ptr = nullptr; // good practice
+</code></pre>
+<h3 id="一些英文"><a href="#一些英文" class="headerlink" title="一些英文"></a>一些英文</h3><p>1.argument：参数</p>
 
     </div>
     
