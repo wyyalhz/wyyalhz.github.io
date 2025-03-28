@@ -48,6 +48,7 @@
 
 <link rel="stylesheet" href="/css/main.css" />
 
+
 <meta name="generator" content="Hexo 7.3.0"></head>
 <body>
     <div id="layout">
@@ -184,7 +185,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/blog/" style="color: #00bcd4">
+                <a href="/tags/blog/" style="color: #00a596">
                     blog
                 </a>
             </span>
@@ -204,7 +205,12 @@
 </blockquote>
 <pre><code class="html">&lt;script src=&quot;https://fastly.jsdelivr.net/npm/live2d-widgets@0/autoload.js&quot;&gt;&lt;/script&gt;
 </code></pre>
-<p><del>我是懒人</del><br>并非懒人。昨天从六点回到宿舍就就开始信心满满地搞起live2d，参照大佬舍友gyg给的<a target="_blank" rel="noopener" href="https://github.com/guansss/pixi-live2d-display">这个</a>项目，因为hexo是静态网站，一开始就直接选用cdn引入，但报错版本不匹配；索性改用npm安装后import，但是hexo不会主动去找node_modules里的包，所以还是报错;于是把.js拷贝到source&#x2F;js里，想着这样就可以被hexo识别了，但是依然报错找不到……<br>最后还是用了懒人代码一键导入，真香。<br>以后找时间再研究一下最开头那个项目，毕竟舍友的项目是基于vue的，而hexo是基于ejs的。<br>但是舍友又给了一个nb的思路。他把他的vue打包成了几个js文件发我，让我在html里引入，然后就可以直接用了，并且还发我了他的御坂美琴模型和vue项目的源码。这样我以后就可以在vue框架下修改模型，然后再打包成js文件，再引入到hexo里。虽然看起来麻烦了一些，但以后就有vue大佬帮我维护<del>（还可以白嫖御坂美琴模型）</del>了😋</p>
+<p><del>我是懒人</del></p>
+<p>并非懒人。昨天从六点回到宿舍就就开始信心满满地搞起live2d，参照大佬舍友gyg给的<a target="_blank" rel="noopener" href="https://github.com/guansss/pixi-live2d-display">这个</a>项目，因为hexo是静态网站，一开始就直接选用cdn引入，但报错版本不匹配；索性改用npm安装后import，但是hexo不会主动去找node_modules里的包，所以还是报错;于是把.js拷贝到source&#x2F;js里，想着这样就可以被hexo识别了，但是依然报错找不到……</p>
+<p>最后还是用了懒人代码一键导入，真香。</p>
+<p>以后找时间再研究一下最开头那个项目，毕竟舍友的项目是基于vue的，而hexo是基于ejs的。</p>
+<p>但是舍友又给了一个nb的思路。他把他的vue打包成了几个js文件发我，让我在html里引入，然后就可以直接用了，并且还发我了他的御坂美琴模型和vue项目的源码。这样我以后就可以在vue框架下修改模型，然后再打包成js文件，再引入到hexo里。虽然看起来麻烦了一些，但以后就有vue大佬帮我维护<del>（还可以白嫖御坂美琴模型）</del>了😋</p>
+<p>具体做法是：</p>
 
     </div>
     
