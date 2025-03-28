@@ -49,6 +49,14 @@
 <link rel="stylesheet" href="/css/main.css" />
 
 
+    <!-- live2d御坂美琴 -->
+     <script src="/L2D/live2d.min.js"></script>
+     <script src="/L2D/live2dcubismcore.js"></script>
+     <script src="/L2D/live2dcubismcore.min.js"></script>
+    
+    <script defer="defer" src="/js/chunk-vendors.405dbdb2.js"></script>
+    <script defer="defer" src="/js/app.eab99ad8.js"></script>
+    
 <meta name="generator" content="Hexo 7.3.0"></head>
 <body>
     <div id="layout">
@@ -185,7 +193,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/blog/" style="color: #ffa2c4">
+                <a href="/tags/blog/" style="color: #00a596">
                     blog
                 </a>
             </span>
@@ -211,6 +219,25 @@
 <p>以后找时间再研究一下最开头那个项目，毕竟舍友的项目是基于vue的，而hexo是基于ejs的。</p>
 <p>但是舍友又给了一个nb的思路。他把他的vue打包成了几个js文件发我，让我在html里引入，然后就可以直接用了，并且还发我了他的御坂美琴模型和vue项目的源码。这样我以后就可以在vue框架下修改模型，然后再打包成js文件，再引入到hexo里。虽然看起来麻烦了一些，但以后就有vue大佬帮我维护<del>（还可以白嫖御坂美琴模型）</del>了😋</p>
 <p>具体做法是：</p>
+<blockquote>
+<p>·注：vue项目存储在D:&#x2F;live2d&#x2F;</p>
+</blockquote>
+<blockquote>
+<p>1.将app.eab99ad8.js和chunk-vendors.45dbdb2.js拷贝到source&#x2F;js里，并在layout&#x2F;_partial&#x2F;head.ejs里引入</p>
+</blockquote>
+<pre><code class="html">    &lt;script defer=&quot;defer&quot; src=&quot;/js/chunk-vendors.405dbdb2.js&quot;&gt;&lt;/script&gt;
+    &lt;script defer=&quot;defer&quot; src=&quot;/js/app.eab99ad8.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<blockquote>
+<p>2.在source里新建L2D和Resources文件夹，分别存放live2d模型和御坂美琴的模型(mikoto文件夹)，并在layout&#x2F;_partial&#x2F;head.ejs里引入</p>
+</blockquote>
+<pre><code class="html">     &lt;script src=&quot;/L2D/live2d.min.js&quot;&gt;&lt;/script&gt;
+     &lt;script src=&quot;/L2D/live2dcubismcore.js&quot;&gt;&lt;/script&gt;
+     &lt;script src=&quot;/L2D/live2dcubismcore.min.js&quot;&gt;&lt;/script&gt;
+```html
+
+&gt;这样就在页面底部成功加载出一个大大的御坂美琴了😀
+</code></pre>
 
     </div>
     
