@@ -193,7 +193,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/c/" style="color: #00a596">
+                <a href="/tags/c/" style="color: #ffa2c4">
                     c++
                 </a>
             </span>
@@ -284,14 +284,56 @@ public:
 </code></pre>
 <p>5.编译器自动生成的拷贝构造是“逐个成员变量”调用拷贝构造的。如果对象中存在另一个类对象的成员变量，例如Class B中有Class A的对象，那么编译器会自动调用Class A的拷贝构造函数来拷贝Class B中的Class A对象。</p>
 <h3 id="五、运算符重载"><a href="#五、运算符重载" class="headerlink" title="五、运算符重载"></a>五、运算符重载</h3><p>1.+&#x3D;重载时，返回值要是引用，不然会创建一个临时变量，浪费空间，还可以连续+&#x3D;，如果不是引用，就会报错，原因是+&#x3D;返回的是一个临时变量，而临时变量不能作为左值</p>
-<p>2.一元运算符重载建议用成员函数，二元运算符重载建议用友元函数</p>
+<p>2.一元运算符重载建议用成员函数，二元运算符重载建议用友元函数,因为成员函数只能访问当前对象的成员变量，而友元函数可以访问所有对象的成员变量</p>
+<p>3.运算符重载函数举例</p>
+<pre><code class="cpp">class A&#123;
+    int a;
+public:
+    A(int x):a(x)&#123;&#125;
+    A operator+(const A&amp; x)&#123; // 二元运算符重载
+        return A(a + x.a);
+    &#125;
+    A&amp; operator+=(const A&amp; x)&#123; // +=重载
+        a += x.a;
+        return *this;
+    &#125;
+    friend A operator-(const A&amp; x, const A&amp; y)&#123; // 友元函数重载
+        return A(x.a - y.a);
+    &#125;
+&#125;;
+</code></pre>
+<p>4.对于一元运算符例如++，前置运算符++a和后置运算符a++的重载函数是不同的。前置运算符++a的重载函数返回值是引用，后置运算符a++的重载函数返回值是对象的副本。前置运算符++a的重载函数格式为A&amp; operator++()，后置运算符a++的重载函数格式为A operator++(int)，其中int是为了区分前置和后置运算符</p>
+<pre><code class="cpp">class A&#123;
+    int a;
+public:
+    A(int x):a(x)&#123;&#125;
+    A&amp; operator++()&#123; // 前置运算符重载
+        ++a;
+        return *this;
+    &#125;
+    A operator++(int)&#123; // 后置运算符重载
+        A temp = *this; // 先保存当前对象的副本
+        ++a;
+        return temp; // 返回副本
+    &#125;
+&#125;;
+</code></pre>
+<p>·注意：++比.运算优先级低，比如你还有一个print()用来输出a的值，那么可以直接写a++.prin()，但不能直接写++a.print()！重载不改变运算符的优先级</p>
 <h3 id="未归类"><a href="#未归类" class="headerlink" title="未归类"></a>未归类</h3><p>1.inline函数必须在头文件中定义，否则会报错</p>
 <p>2.在 delete ptr; 之后写 ptr &#x3D; nullptr; 是一个 良好的编程习惯，即使 delete 本身已经释放了内存。</p>
 <pre><code class="cpp">int* ptr = new int(10);
 delete ptr;
 ptr = nullptr; // good practice
 </code></pre>
-<h3 id="一些英文"><a href="#一些英文" class="headerlink" title="一些英文"></a>一些英文</h3><p>1.argument：参数</p>
+<p>3.不能以ostream对象作为参数传递给函数，因为ostream对象是一个流对象，不能被复制，只能被引用或指针传递</p>
+<pre><code class="cpp">void print(ostream&amp; os)&#123; // 正确
+    os &lt;&lt; &quot;Hello World&quot;;
+&#125;
+void print(ostream os)&#123; // 错误
+    os &lt;&lt; &quot;Hello World&quot;; // 报错：ostream对象不能被复制
+&#125;
+</code></pre>
+<h3 id="一些英文"><a href="#一些英文" class="headerlink" title="一些英文"></a>一些英文</h3><p>1.argument：参数<br>2.pre-&#x2F;prefix：前缀 postfix：后缀</p>
 
     </div>
     
