@@ -193,7 +193,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/c/" style="color: #ff7d73">
+                <a href="/tags/c/" style="color: #00a596">
                     c++
                 </a>
             </span>
@@ -434,7 +434,8 @@ public:
 </code></pre>
 <p>6.返回引用还是副本取决于你重载的运算符的性质，比如+&#x3D;，++，–等运算符返回引用，因为是对对象本身的操作，而+，-等运算符返回副本，因为是对对象的值的操作</p>
 <p>7.成员函数还是友元函数取决于你重载的运算符的性质，比如一元运算符建议用成员函数，二元运算符建议用友元函数，因为成员函数只能访问当前对象的成员变量，而友元函数可以访问所有对象的成员变量<br>但也不是绝对的，比如-运算符可以用成员函数，进行同一类对象的运算</p>
-<h2 id="13-Dynamic-Object-Creation-13"><a href="#13-Dynamic-Object-Creation-13" class="headerlink" title="13 Dynamic Object Creation (#13)"></a>13 Dynamic Object Creation (#13)</h2><h3 id="一、new和delete"><a href="#一、new和delete" class="headerlink" title="一、new和delete"></a>一、new和delete</h3><p>1.detete释放的是指针指向的内存，而不是指针本身，所以delete ptr; 之后ptr还是存在的，只是指向的内存被释放了，ptr仍然可以使用，但不建议使用，因为ptr指向的内存已经被释放了，可能会导致未定义行为。所以，在 delete ptr; 之后写 ptr &#x3D; nullptr; 是一个良好的编程习惯。</p>
+<!-- ## 13 Dynamic Object Creation (#13) -->
+<h2 id="13-Dynamic-Object-Creation"><a href="#13-Dynamic-Object-Creation" class="headerlink" title="13 Dynamic Object Creation"></a><span id="13">13 Dynamic Object Creation</span></h2><h3 id="一、new和delete"><a href="#一、new和delete" class="headerlink" title="一、new和delete"></a>一、new和delete</h3><p>1.detete释放的是指针指向的内存，而不是指针本身，所以delete ptr; 之后ptr还是存在的，只是指向的内存被释放了，ptr仍然可以使用，但不建议使用，因为ptr指向的内存已经被释放了，可能会导致未定义行为。所以，在 delete ptr; 之后写 ptr &#x3D; nullptr; 是一个良好的编程习惯。</p>
 <pre><code class="cpp">int* ptr = new int(10);
 delete ptr;
 ptr = nullptr; // good practice
