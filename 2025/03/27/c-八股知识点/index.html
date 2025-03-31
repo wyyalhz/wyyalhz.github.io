@@ -3,7 +3,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8" />
-    <title>c++八股细节易错点 | wyyalhz的Blog</title>
+    <title>c++八股知识点 | wyyalhz的Blog</title>
     <meta name="author" content="Rain Gu" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -165,7 +165,7 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>c++八股细节易错点</h1>
+        <h1>c++八股知识点</h1>
     </div>
     <div class="info">
         <span class="date">
@@ -193,7 +193,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/c/" style="color: #ffa2c4">
+                <a href="/tags/c/" style="color: #03a9f4">
                     c++
                 </a>
             </span>
@@ -205,8 +205,11 @@
     <div class="content" v-pre>
         <p>为了应付学校c++期末考试而而写，随上课进度更新。</p>
 <span id="more"></span>
-
-<h2 id="2025-3-24"><a href="#2025-3-24" class="headerlink" title="2025.3.24"></a>2025.3.24</h2><h3 id="一、static（复习"><a href="#一、static（复习" class="headerlink" title="一、static（复习"></a>一、static（复习</h3><p>1.static 的作用区间是当前文件整个程序的运行期间。static只被创建一次</p>
+<p>目录：</p>
+<ul>
+<li><a href="#%E4%B8%80static%E5%A4%8D%E4%B9%A0">一、static（复习</a></li>
+</ul>
+<h2 id="一、static（复习"><a href="#一、static（复习" class="headerlink" title="一、static（复习"></a>一、static（复习</h2><p>1.static 的作用区间是当前文件整个程序的运行期间。static只被创建一次</p>
 <p>2.static, const, inline只在一个编译单元起作用（所以inline函数应该定义在头文件中）</p>
 <p>3.class中static变量初始化要在class外，且不要再加static；static成员变量不可以在类内初始化，因为static成员变量是属于类的，不是属于对象的，所以不能在类内初始化，否则会报错</p>
 <pre><code class="cpp">class A&#123;
@@ -223,7 +226,7 @@ int A::a = 0;
 <p>4.static成员函数在.h文件中声明，在.cpp文件中定义，定义时不要加static，因为声明时已经加了，否则会报错</p>
 <p>5.static成员函数只能访问static成员变量，没有this指针，不用创建具体对象就可以调用（因为static成员函数不属于任何对象，只创建一次，所以不能访问非static成员变量。</p>
 <p>6.static成员函数不能被const修饰，因为const成员函数是为了保护对象的成员变量，而static成员函数不属于任何对象，所以没有必要保护</p>
-<h3 id="二、namespace"><a href="#二、namespace" class="headerlink" title="二、namespace"></a>二、namespace</h3><p>1.using namespace 不要写在头文件中，会污染命名空间，不然.cpp一下子全打开了，容易发生冲突</p>
+<h2 id="二、namespace"><a href="#二、namespace" class="headerlink" title="二、namespace"></a>二、namespace</h2><p>1.using namespace 不要写在头文件中，会污染命名空间，不然.cpp一下子全打开了，容易发生冲突</p>
 <p>2.一个namespace中有多个函数，可以用哪个using哪个，不用全写</p>
 <pre><code class="cpp">namespace A&#123;
     void f1();
@@ -257,18 +260,17 @@ namespace A&#123;
     void f2();
 &#125;
 </code></pre>
-<h3 id="三、指针和引用（复习"><a href="#三、指针和引用（复习" class="headerlink" title="三、指针和引用（复习"></a>三、指针和引用（复习</h3><p>1.指针和引用的区别：指针可以指向空，引用不可以；指针可以改变指向，引用不可以；引用更安全，指针更灵活</p>
+<h2 id="三、指针和引用（复习"><a href="#三、指针和引用（复习" class="headerlink" title="三、指针和引用（复习"></a>三、指针和引用（复习</h2><p>1.指针和引用的区别：指针可以指向空，引用不可以；指针可以改变指向，引用不可以；引用更安全，指针更灵活</p>
 <p>2.指针要初始化，防止野指针。可以用具体类型的指针初始化void指针，但不能用void指针初始化具体类型的指针，因为void*指针是无类型指针（除非强制类型转换）</p>
 <p>3.函数返回指针或引用时，不要返回局部变量的指针或引用，因为局部变量在函数结束后会被释放。return static变量或new出来的变量是安全的，因为static变量在程序结束后才会被释放，new出来的变量需要手动释放</p>
 <p>4.引用一定要初始化为一个对象，不然会报错，但如果是const引用，可以初始化为一个常量（这时编译器会自动创建一个临时变量）</p>
-<h3 id="四、拷贝函数"><a href="#四、拷贝函数" class="headerlink" title="四、拷贝函数"></a>四、拷贝函数</h3><p>1.拷贝函数的作用是在对象被创建时，将一个对象的值赋给另一个对象，本质是一个构造函数，一般格式为X::X(const X&amp; x):a(x.a),b(x.b){}，其中a,b是对象的成员变量，a和b要写在初始化列表中</p>
+<h2 id="四、拷贝函数"><a href="#四、拷贝函数" class="headerlink" title="四、拷贝函数"></a>四、拷贝函数</h2><p>1.拷贝函数的作用是在对象被创建时，将一个对象的值赋给另一个对象，本质是一个构造函数，一般格式为X::X(const X&amp; x):a(x.a),b(x.b){}，其中a,b是对象的成员变量，a和b要写在初始化列表中</p>
 <p>2.拷贝构造函数被调用的情况：1.用一个对象初始化另一个对象（一定注意是初始化！这是一个正在创建中的对象而不是已经有的对象！像b&#x3D;a两个已有对象就会调用赋值函数而不是拷贝函数） 2.对象作为函数参数传递 3.对象作为函数返回值(取决于编译器是否优化)</p>
 <p>3.如果是两个已经创建的对象，直接用&#x3D;赋值，会调用赋值函数，而不是拷贝函数，赋值函数的格式为X&amp; operator&#x3D;(const X&amp; x){a&#x3D;x.a;b&#x3D;x.b;return *this;}</p>
 <p>4.如果类中有指针成员变量，拷贝构造函数和赋值函数要深拷贝，否则会出现浅拷贝的问题，导致内存泄漏或重复释放内存。深拷贝的格式为X::X(const X&amp; x):a(new int(*x.a)),b(x.b){}，其中a是指针成员变量，b是普通成员变量<br>（浅拷贝导致重复释放例子可见3.26作业：英文教材ex11_17）</p>
 <pre><code class="cpp">class A&#123;
     int* a;
     int b;
-public:
     A(int x, int y):a(new int(x)),b(y)&#123;&#125; // 构造函数
     A(const A&amp; x):a(new int(*x.a)),b(x.b)&#123;&#125; // 拷贝构造函数
     A&amp; operator=(const A&amp; x)&#123; // 赋值函数
@@ -283,7 +285,111 @@ public:
 &#125;;
 </code></pre>
 <p>5.编译器自动生成的拷贝构造是“逐个成员变量”调用拷贝构造的。如果对象中存在另一个类对象的成员变量，例如Class B中有Class A的对象，那么编译器会自动调用Class A的拷贝构造函数来拷贝Class B中的Class A对象。</p>
-<h3 id="五、运算符重载"><a href="#五、运算符重载" class="headerlink" title="五、运算符重载"></a>五、运算符重载</h3><p>1.+&#x3D;重载时，返回值要是引用，不然会创建一个临时变量，浪费空间，还可以连续+&#x3D;，如果不是引用，就会报错，原因是+&#x3D;返回的是一个临时变量，而临时变量不能作为左值</p>
+<h2 id="五、运算符重载"><a href="#五、运算符重载" class="headerlink" title="五、运算符重载"></a>五、运算符重载</h2><p>1.各类型运算符重载函数实例<br>目录：</p>
+<ul>
+<li><a href="#1%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97%E7%AC%A6">1）四则运算符</a></li>
+<li><a href="#2%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6">2）赋值运算符&#x3D;</a></li>
+<li><a href="#3%E4%B8%8E%E7%AD%89%E5%8F%B7%E7%BB%93%E5%90%88%E7%9A%84%E8%BF%90%E7%AE%97%E7%AC%A6">3）与等号结合的运算符</a></li>
+<li><a href="#4%E8%87%AA%E5%A2%9E%E8%87%AA%E5%87%8F%E8%BF%90%E7%AE%97%E7%AC%A6">4）自增自减运算符</a></li>
+<li><a href="#5%3C%3C%E5%92%8C%3E%3E">5）&lt;&lt;和&gt;&gt;</a></li>
+<li><a href="#6%5B%5D">6）[]</a></li>
+<li><a href="#7%E5%92%8C%E5%9C%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E4%B8%AD%E7%9A%84%E9%87%8D%E8%BD%BD%E5%BA%94%E7%94%A8">7）-&gt;和()在数据类型转换中的重载应用</a></li>
+</ul>
+<h5 id="1）四则运算符"><a href="#1）四则运算符" class="headerlink" title="1）四则运算符"></a>1）四则运算符</h5><pre><code class="cpp">class A&#123;
+    int a;
+public:
+    A(int x):a(x)&#123;&#125;
+    A operator+(const A&amp; x)&#123; // 二元运算符重载
+        return A(a + x.a);
+    &#125;
+&#125;;
+</code></pre>
+<p>或</p>
+<pre><code class="cpp">class A&#123;
+    int a;
+public:
+    A(int x):a(x)&#123;&#125;
+    friend A operator+(const A&amp; x, const A&amp; y)&#123; // 友元函数重载
+        return A(x.a + y.a);
+    &#125;
+&#125;;
+</code></pre>
+<h5 id="2）赋值运算符"><a href="#2）赋值运算符" class="headerlink" title="2）赋值运算符&#x3D;"></a>2）赋值运算符&#x3D;</h5><pre><code class="cpp">class A&#123;
+    int a;
+public:
+    A(int x):a(x)&#123;&#125;
+    A&amp; operator=(const A&amp; x)&#123; // 赋值运算符重载
+        a = x.a;
+        return *this; // 返回引用
+    &#125;
+&#125;;
+</code></pre>
+<h5 id="3）与等号结合的运算符"><a href="#3）与等号结合的运算符" class="headerlink" title="3）与等号结合的运算符"></a>3）与等号结合的运算符</h5><pre><code class="cpp">class A&#123;
+    int a;
+public:
+    A(int x):a(x)&#123;&#125;
+    A&amp; operator=(const A&amp; x)&#123; // 赋值运算符重载
+        a = x.a;
+        return *this; // 返回引用
+    &#125;
+&#125;;
+</code></pre>
+<h5 id="4）自增自减运算符"><a href="#4）自增自减运算符" class="headerlink" title="4）自增自减运算符"></a>4）自增自减运算符</h5><pre><code class="cpp">class A&#123;
+    int a;
+public:
+    A(int x):a(x)&#123;&#125;
+    A&amp; operator++()&#123; // 前置运算符重载
+        ++a;
+        return *this;
+    &#125;
+    A operator++(int)&#123; // 后置运算符重载
+        A temp = *this; // 先保存当前对象的副本
+        ++a;
+        return temp; // 返回副本
+    &#125;
+&#125;;
+</code></pre>
+<h5 id="5）"><a href="#5）" class="headerlink" title="5）&lt;&lt;和&gt;&gt;"></a>5）&lt;&lt;和&gt;&gt;</h5><pre><code class="cpp">class A&#123;
+    int a;
+public:
+    A(int x):a(x)&#123;&#125;
+    friend ostream&amp; operator&lt;&lt;(ostream&amp; os, const A&amp; x)&#123; // 重载&lt;&lt;运算符
+        os &lt;&lt; x.a;
+        return os; // 返回ostream对象的引用
+    &#125;
+    friend istream&amp; operator&gt;&gt;(istream&amp; is, A&amp; x)&#123; // 重载&gt;&gt;运算符
+        is &gt;&gt; x.a;
+        return is; // 返回istream对象的引用
+    &#125;
+&#125;;
+</code></pre>
+<h5 id="6）"><a href="#6）" class="headerlink" title="6）[]"></a>6）[]</h5><pre><code class="cpp">class A&#123;
+    char* a;
+public:
+    A(const char* x)&#123;
+        a = new char[strlen(x) + 1];//+1是为了存放&#39;\0&#39;
+        memset(a, 0, strlen(x) + 1);
+    &#125;
+    ~A()&#123;
+        delete[] a;
+    &#125;
+    char&amp; operator[](int i)&#123; // 重载[]运算符
+        return a[i];
+    &#125;
+&#125;;
+</code></pre>
+<h5 id="7）-和-在数据类型转换中的重载应用"><a href="#7）-和-在数据类型转换中的重载应用" class="headerlink" title="7）-&gt;和()在数据类型转换中的重载应用"></a>7）-&gt;和()在数据类型转换中的重载应用</h5><p>2.所有一元运算符重载为member;<br>  &#x3D;,(),[],-&gt;,-&gt;* 必须重载为member;<br>  跟等号结合的二元运算符重载为member;<br>  其他二元运算符重载为friend;</p>
+<p>1.+&#x3D;重载时，返回值要是引用，不然会创建一个临时变量，浪费空间，还可以连续+&#x3D;，如果不是引用，就会报错，原因是+&#x3D;返回的是一个临时变量，而临时变量不能作为左值</p>
+<pre><code class="cpp">class A&#123;
+    int a;
+public:
+    A(int x):a(x)&#123;&#125;
+    A&amp; operator+=(const A&amp; x)&#123; // +=重载
+        a += x.a;
+        return *this; // 返回引用
+    &#125;
+&#125;;
+</code></pre>
 <p>2.一元运算符重载建议用成员函数，二元运算符重载建议用友元函数,因为成员函数只能访问当前对象的成员变量，而友元函数可以访问所有对象的成员变量</p>
 <p>3.运算符重载函数举例</p>
 <pre><code class="cpp">class A&#123;
@@ -319,13 +425,30 @@ public:
 &#125;;
 </code></pre>
 <p>·注意：++比.运算优先级低，比如你还有一个print()用来输出a的值，那么可以直接写a++.prin()，但不能直接写++a.print()！重载不改变运算符的优先级</p>
-<h3 id="未归类"><a href="#未归类" class="headerlink" title="未归类"></a>未归类</h3><p>1.inline函数必须在头文件中定义，否则会报错</p>
-<p>2.在 delete ptr; 之后写 ptr &#x3D; nullptr; 是一个 良好的编程习惯，即使 delete 本身已经释放了内存。</p>
+<p>5.重载&lt;&lt;运算符时，返回值要是ostream对象的引用，不然会创建一个临时变量，浪费空间，还可以连续&lt;&lt;，如果不是引用，就会报错，原因是&lt;&lt;返回的是一个临时变量，而临时变量不能作为左值</p>
+<pre><code class="cpp">class A&#123;
+    int a;
+public:
+    A(int x):a(x)&#123;&#125;
+    friend ostream&amp; operator&lt;&lt;(ostream&amp; os, const A&amp; x)&#123; // 重载&lt;&lt;运算符
+        os &lt;&lt; x.a;
+        return os; // 返回ostream对象的引用
+    &#125;
+&#125;;
+</code></pre>
+<p>6.返回引用还是副本取决于你重载的运算符的性质，比如+&#x3D;，++，–等运算符返回引用，因为是对对象本身的操作，而+，-等运算符返回副本，因为是对对象的值的操作</p>
+<p>7.成员函数还是友元函数取决于你重载的运算符的性质，比如一元运算符建议用成员函数，二元运算符建议用友元函数，因为成员函数只能访问当前对象的成员变量，而友元函数可以访问所有对象的成员变量<br>但也不是绝对的，比如-运算符可以用成员函数，进行同一类对象的运算</p>
+<h2 id="new和delete"><a href="#new和delete" class="headerlink" title="new和delete"></a>new和delete</h2><p>1.detete释放的是指针指向的内存，而不是指针本身，所以delete ptr; 之后ptr还是存在的，只是指向的内存被释放了，ptr仍然可以使用，但不建议使用，因为ptr指向的内存已经被释放了，可能会导致未定义行为。所以，在 delete ptr; 之后写 ptr &#x3D; nullptr; 是一个良好的编程习惯。</p>
 <pre><code class="cpp">int* ptr = new int(10);
 delete ptr;
 ptr = nullptr; // good practice
 </code></pre>
-<p>3.不能以ostream对象作为参数传递给函数，因为ostream对象是一个流对象，不能被复制，只能被引用或指针传递</p>
+<p>2.数组情况用delete[]，单个对象用delete</p>
+<pre><code class="cpp">int* ptr = new int[10]; // 动态分配数组
+delete[] ptr; // 释放数组
+</code></pre>
+<h2 id="未归类"><a href="#未归类" class="headerlink" title="未归类"></a>未归类</h2><p>1.inline函数必须在头文件中定义，否则会报错</p>
+<p>2.不能以ostream对象作为参数传递给函数，因为ostream对象是一个流对象，不能被复制，只能被引用或指针传递</p>
 <pre><code class="cpp">void print(ostream&amp; os)&#123; // 正确
     os &lt;&lt; &quot;Hello World&quot;;
 &#125;
@@ -333,7 +456,37 @@ void print(ostream os)&#123; // 错误
     os &lt;&lt; &quot;Hello World&quot;; // 报错：ostream对象不能被复制
 &#125;
 </code></pre>
-<h3 id="一些英文"><a href="#一些英文" class="headerlink" title="一些英文"></a>一些英文</h3><p>1.argument：参数<br>2.pre-&#x2F;prefix：前缀 postfix：后缀</p>
+<p>3.存储字符串的动态数组：</p>
+<pre><code class="cpp">class MyString &#123;
+    char* data;  // 存储字符串的动态数组
+    int length;  // 字符串长度
+
+public:
+    // 构造函数
+    MyString(int len) : length(len) &#123;
+        data = new char[length + 1]; // 多分配1个字节存放 &#39;\0&#39;
+        memset(data, 0, length + 1); // 初始化为空字符
+    &#125;
+
+    // 析构函数
+    ~MyString() &#123;
+        delete[] data;
+    &#125;
+//str.data 是一个 char* 指针，指向动态分配的字符数组。在 C++ 中，std::ostream（比如 cout）的 operator&lt;&lt; 具有针对 char* 的特化重载，它会 将 char* 解释为 C 风格字符串（以 \0 结尾的字符数组），并从指针开始，逐个输出字符，直到遇到 \0 结束。所以直接cout &lt;&lt;str.data; 就可以输出字符串了。
+    friend std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const MyString&amp; str) &#123;
+        os &lt;&lt; str.data; // 输出字符串
+        return os;
+    &#125;
+&#125;;
+</code></pre>
+<ol start="4">
+<li></li>
+</ol>
+<pre><code class="cpp">void f()const&#123;&#125;;//这种写法只能修饰成员函数，表示该函数不能修改对象的成员变量
+//不能修饰非成员函数，因为非成员函数没有this指针，没有意义
+friend void f() const&#123;&#125;; //错误！friend函数不是成员函数，不能加const 
+</code></pre>
+<h2 id="一些英文"><a href="#一些英文" class="headerlink" title="一些英文"></a>一些英文</h2><p>1.argument：参数<br>2.pre-&#x2F;prefix：前缀 postfix：后缀</p>
 
     </div>
     
