@@ -1,0 +1,295 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>《VINLAND SAGA》漫评 | wyyalhz的Blog</title>
+    <meta name="author" content="Rain Gu" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar2.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+
+    <!-- live2d御坂美琴 -->
+     <script src="/L2D/live2d.min.js"></script>
+     <script src="/L2D/live2dcubismcore.js"></script>
+     <script src="/L2D/live2dcubismcore.min.js"></script>
+    
+    <script defer="defer" src="/js/chunk-vendors.405dbdb2.js"></script>
+    <script defer="defer" src="/js/app.eab99ad8.js"></script>
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>正在泥土中放置石头</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>WYYALHZ的BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;WYYALHZ的BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>《VINLAND SAGA》漫评</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/3/31
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E9%9A%8F%E7%AC%94/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                随笔
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E5%8A%A8%E6%BC%AB/" style="color: #ffa2c4">
+                    动漫
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E5%86%B0%E6%B5%B7%E6%88%98%E8%AE%B0/" style="color: #ff7d73">
+                    冰海战记
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>看完第23集后，我不知道应该写些什么。</p>
+<span id="more"></span>
+
+<p>看了这么多年番，有了自己的博客后，第一次尝试写感想。在bangumi曾发过不少短评吐槽，但真正提笔想写点文章，还是第一次。</p>
+<p>虽然是周一，不过赶上毛概实践周，三点钟就没课了。我看番喜欢用大段的连续时间一气呵成，便想着今天把冰海战记看完————哈哈，本来这两天刚刚建立十点半睡六点半起的作息，而现在差一刻就是新的一天了，我依然坐在这里打字，实在是想写点什么东西。</p>
+<p>想第一次写长篇漫评的想法来源于晚上七八点左右，看到第19集，心里堵得不行，当时一边看着另一边脑子里都把漫评的框架想好了————以“我理解作者想要表达什么，但这样的表达方式并不让人喜欢”提笔，然后就第二季的人物从头到现在的表现激扬文字，尤其犀利地点评一下降智的Arnheid和弱智的Einar……</p>
+<p>然而，我很庆幸我没有打破一气呵成的习惯，而是一直看到了最后。于是，现在就成了概要里描述的状态——我不知道应该写些什么。</p>
+<p>21-23集Thorfinn和Canute的对辩着实让人眼前一亮。整个第二季的节奏恍惚让我回到了追86的日子————整个第二季漫长且“乏味”的铺垫全是为了这最后三集。这里的“乏味”是指观感而不针对剧情本身，就如86为最后的重逢铺垫了整个part2的漫长逃亡，冰海则更上一层楼用整整20集写Thorfinn的田园农耕记，很容易让人中期脱坑。但当你真正熬到最后，当你看到20集的伏笔收束于一点，然后迸发出强大的力量，那种震撼感是无与伦比的。对于我这种galgame玩家而言，这种前期大量日常铺垫后期爆发的节奏正是专业对口。对于大多数人慕名欣赏的人，我也很开心地看到，冰海在bangumi上被打出8+的评分。</p>
+<p>聚焦21-23，可以说这是第一次有一部番剧能让我、在最高潮的部分，不是凭借bgm、画面，不是急速转变的剧情、战斗，而就是两个人长达数十分钟的、平淡还有点“磕巴”的对话，便让我为之动容。我绝对不会想到名为“海盗战记”的番剧却在第二季凭借超高的文戏在我心中留下难以磨灭的印记。一直以来，作为麻枝准和泽野弘之的忠实粉丝，我一直坚信只有好的配乐才能真正传达出作者的思想，而现在，这里又多了一份文字的力量。</p>
+<p>对于冰海战记的赞赏，我鄙陋的文学功底只能点到这里了。作为我肯定会再刷的番剧列表里的作品，或许等我有了足够的积累后能更清晰地剖析出一些东西来。</p>
+<p>如果要我打分，我会打到8.7，哈哈，小数点后不重要，只是因为7恰好也是我的幸运数。剧情上田间耕作的慢节奏在我看来不算是很大的问题，受载体所限，不像小说和漫画，观众可以主观地快速带过多个分镜，而番剧以固定时长演绎出来，观众脑子比画面跑得快，自然会觉得拖沓、不明所以。当然，这也得益于最后三集的上层建筑结结实实地接住了底下这么多铺垫，要不然就会是一场漫长的赤石事故了。故事设计总体来说自然合理，唯一让我觉得突兀的是Arnheid前夫哥哥达那段剧情（哈哈，这段就是我开头说心堵得不行的原因）。</p>
+<blockquote>
+<p>“剧情进行到一半，突然插进来一个关键配角，面目狰狞，上来杀了四五个人，却受到主角团队无条件的帮助，最后温柔地逝去”</p>
+</blockquote>
+<p>如果以我当时的状态描述这几集就是这个样子。前半表现得端庄神圣的Arnheid就像降智一样一顿摸瞎最后啥都没得到还失去了所有，Einar好不容易在种田阶段积累起来的一些好感，可只要一遇到跟Arnheid有关的事就不管不顾咋咋呼呼，让观众姥爷像看恋爱脑一样只能捂脸哭———我们都是观众姥爷，没有战乱，衣食无忧，但你试图真正从他们的视角出发来看事件————你真正做到了吗？我曾自信地认为我做到了，而直到看到bangumi上的评论才真正启发了我。Arnheid只是被作者画的太漂亮了，也很体贴、善良，但同时，她只是维京时期的一个普通家庭妇女，她没有那么伟大光辉。一个妻子，因为战争沦为奴隶，怀上了主人的孩子，却因为一个偶然又与多年未见的丈夫重逢……屏幕前高知的你我连前女友发个pyq都要展开广阔的联想，Arnheid面对这种境况，在我真正想通并试图体会过后，只有深深的沉痛、迷惘、不知所措，用她自己的话说就是“迷失在噩梦里”。她想养育肚子里主人的孩子长大，这是作为母亲的责任，她想帮助丈夫逃跑，这是作为妻子的责任，我们不能拿高高在上的公平正义去评判没有发生在我们身上的事。以这种视角去想，Arnheid的行为就合理多了。无论是哥达、Arnheid、农场主凯特尔，他们都只是想守护自己的那一点点幸福。凯特尔那么一个善良的人，给予奴隶尊重、给予劳动尊重的人，不忍心惩罚偷粮食的可怜孩子的人，都却被逼得亲手打死Arnheid、带着三百人硬刚国王送死，这是为什么？怎么了？<p style="color:blue">当我停止抱怨人物而是试图像作品的真正内核提问时，我发现我终于能抓住最后三集作者想要表达的东西了。</p></p>
+<p>吭哧吭哧挤不出几个字，一抬眼已经快凌晨一点半了，明天还要上早十。还有好多在最后三级让我觉得塑造得非常立体的人物，蛇（就像第一季的阿谢拉德一样让我喜欢的人物），农场少主，剑圣沃尔夫，Canute王……才疏学浅，文字粗鄙，只能暂时搁置，在心中留作念想，待二刷有更深刻的理解之后再来补全。</p>
+<p>希望我们都能成为勇敢强大又温柔善良的人。<br><image src="/image/VINLANDSAGA1.png"></p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2025 wyyalhz的Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Rain Gu
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+
+    <!-- 鼠标点击特效 -->
+    <canvas
+        id="fireworks"
+        style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+    ></canvas>
+    <script src="https://s4.zstatic.net/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="/js/fireworks.min.js"></script>
+
+    <!-- 鼠标移动流星特效 -->
+    <canvas
+        id="background"
+        style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"
+    ></canvas>
+    <script src="/js/mouseFlash.min.js"></script>
+
+    <script src="https://fastly.jsdelivr.net/npm/live2d-widgets@0/autoload.js"></script>
+
+</body>
+</html>
