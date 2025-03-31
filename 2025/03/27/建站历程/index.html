@@ -193,7 +193,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/blog/" style="color: #00bcd4">
+                <a href="/tags/blog/" style="color: #ffa2c4">
                     blog
                 </a>
             </span>
@@ -238,6 +238,24 @@
 <blockquote>
 <p>这样就在页面底部成功加载出一个大大的御坂美琴了😀</p>
 </blockquote>
+<h2 id="2025-3-28"><a href="#2025-3-28" class="headerlink" title="2025.3.28"></a>2025.3.28</h2><h3 id="给文章添加目录"><a href="#给文章添加目录" class="headerlink" title="给文章添加目录"></a>给文章添加目录</h3><p>起因是c++八股内容繁多，文章冗长，为了方便查找和阅读打算添加目录。但是，markdown中目录语法是</p>
+<pre><code class="markdown">- [目录标题](#id)
+</code></pre>
+<p>而后面这个id，如果没有特别声明，vsc和hexo和github都会自动生成一个id，但是自动生成的不一样。例如11章我的标题是</p>
+<blockquote>
+<p>11.References &amp; the Copy-Constructor<br>vsc生成的id是</p>
+</blockquote>
+<pre><code class="markdown">- [11.References &amp; the Copy-Constructor](#11-references--the-copy-constructor)
+</code></pre>
+<p>而本地localhost生成的id是</p>
+<pre><code class="markdown">- [11.References &amp; the Copy-Constructor](#11-References-the-Copy-Constructor)
+</code></pre>
+<p>而github生成的id是</p>
+<pre><code class="markdown">- [11.References &amp; the Copy-Constructor](#11-References-the-Copy-Constructor-11)
+</code></pre>
+<p>而而的而且，即使我写对了id，在github page上也无法跳转到对应的标题，暂时没找到原因，故最后手动添加id，这样还能保证本地调试和github的一致性。</p>
+<pre><code class="markdown">## &lt;span id=&quot;13&quot;&gt;13 Dynamic Object Creation&lt;/span&gt;
+</code></pre>
 
     </div>
     
