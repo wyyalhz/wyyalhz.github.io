@@ -1,0 +1,1 @@
+{"compilerOptions":{"lib":["DOM","ESNext"],"esModuleInterop":true,"outDir":"build","strictNullChecks":true,"target":"ESNext","module":"ESNext","moduleResolution":"Node","skipLibCheck":true,"noImplicitAny":true,"downlevelIteration":true},"exclude":["build","examples","vite.config.ts"]}
