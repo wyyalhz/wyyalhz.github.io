@@ -193,7 +193,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/c/" style="color: #ff7d73">
+                <a href="/tags/c/" style="color: #03a9f4">
                     c++
                 </a>
             </span>
@@ -211,6 +211,8 @@
 <li><a href="#11">11.References &amp; the Copy-Constructor</a></li>
 <li><a href="#12">12.Operator Overloading</a></li>
 <li><a href="#13">13.Dynamic Object Creation</a></li>
+<li><a href="#14">14.Inheritance &amp; Composition</a></li>
+<li><a href="#15">15.Polymorphism and Virtual Functions</a></li>
 <li><a href="#%E6%9C%AA%E5%BD%92%E7%B1%BB">未归类</a></li>
 <li><a href="#%E4%B8%80%E4%BA%9B%E8%8B%B1%E6%96%87">一些英文</a></li>
 </ul>
@@ -401,7 +403,40 @@ ptr = nullptr; // good practice
 delete[] ptr; // 释放数组
 </code></pre>
 <p>3.对于有指针成员变量的类，一定要自己定义拷贝构造函数和赋值函数，否则会出现浅拷贝的问题，导致内存泄漏或重复释放内存。深拷贝的格式为X::X(const X&amp; x):a(new int(*x.a)),b(x.b){}，其中a是指针成员变量，b是普通成员变量</p>
-<h2 id="未归类"><a href="#未归类" class="headerlink" title="未归类"></a><span id="未归类">未归类</span></h2><p>1.inline函数必须在头文件中定义，否则会报错</p>
+<h2 id="Inheritance-Composition"><a href="#Inheritance-Composition" class="headerlink" title="Inheritance &amp; Composition"></a><span id="14">Inheritance &amp; Composition</span></h2><p>1.从基类继承来的函数，如果子类没有重写，那么调用的是基类的函数，里面的变量是基类的变量，而不是子类的变量。</p>
+<p>2.基类必须在派生类之前定义，否则编译器会报错，不能只声明不定义。</p>
+<p>3.继承与组合的本质区别：继承是is-a关系，组合是has-a关系。</p>
+<p>4.派生类对象构造顺序：先构造基类，再构造派生类。注意不是按初始化列表顺序，而是派生类中的基类继承顺序和成员变量声明顺序。</p>
+<p>6.不能继承到派生类的函数：Constructor, Destructor, Operator Overloading</p>
+<p>7.继承的三个关键词：public, private, protected</p>
+<p>8.通过private继承后，不能直接使用基类成员，可以间接访问。</p>
+<p>9.如果有两个基类有名字一样的成员函数，解决办法有：</p>
+<ul>
+<li>作用域限定符</li>
+<li>重新定义基类成员函数</li>
+<li>虚基类（当派生类从多个基类派生，而这些基类又有共同基类，则一开始就将共同基类设为虚基类，这样派生类就可以继承该基类的成员函数）</li>
+</ul>
+<p>10.派生类定义了名字相同的数据成员，则会隐藏基类的同名数据成员，如果需要访问基类的同名数据成员可以用作用域限定符。</p>
+<h2 id="Polymorphism-Virtual-Functions"><a href="#Polymorphism-Virtual-Functions" class="headerlink" title="Polymorphism &amp; Virtual Functions"></a><span id="15">Polymorphism &amp; Virtual Functions</span></h2><p>1.polymorphism与overloading的区别：overloading是编译时重载，polymorphism是运行时多态。<br>    - overriding：子类重新定义基类中的虚函数，使得派生类对象调用该函数时，调用的是子类的函数。如果派生类没有重写该函数，那么调用的是基类的函数。<br>    - overloading：同一个作用域中，可以有多个同名函数，只要参数列表不同即可。</p>
+<p>2.虚函数的核心目的是通过基类访问派生类定义的函数，实现运行时多态。</p>
+<p>3.虚函数的声明：virtual 返回值类型 函数名(参数表) const;<br>  虚函数不能是static的，因为static函数属于类本身，与对象无关，不能被多态调用。</p>
+<p>4.虚函数只需要在声明时加上关键字virtual，在类外定义时不加。</p>
+<p>5.polymorphic条件：<br>    - 基类中有virtual函数<br>    - 派生类继承为public<br>    - 派生类中函数参数列表与基类中函数参数列表一致<br>    - 基类通过指针或引用指向派生类对象，调用虚函数<br>    <code>cpp     //A是基类，B是派生类     B b;     A* pa = &amp;b; //或A &amp;ra = b;但不能是A a = b,因为这样在运行之前就已经确定了对象的类型     pa-&gt;func(); // 调用的是B的func函数     //如果B中有A中没有的函数，那么pa无法调用，因为此时pa是A类对象     </code></p>
+<p>6.abstract class：抽象类，不能实例化，只能作为基类被继承，不能创建对象，只能作为接口使用。包含纯虚函数的类就是抽象类。但可以声明抽象类引用或指向抽象类的指针。</p>
+<pre><code class="cpp">class Shape&#123;
+public:
+    virtual double area() = 0; //纯虚函数
+    //如果要带参数
+    virtual double perimeter()(double) = 0; //纯虚函数
+&#125;;
+</code></pre>
+<p>7.派生类会隐藏基类的同名成员函数，如果基类中Overloading了两个virtual f()，在派生类中Overriding其中一个，那么基类中的另一个就不能再被调用；或者Overloading了f()，那么基类中的f()就不能再被调用。除非用作用域限定符。</p>
+<p>8.构造函数不能是虚函数，因为构造函数不能被多态调用。</p>
+<p>9.析构函数可以是虚函数，用虚函数更安全</p>
+<p>10.向上类型转换是安全的，但向下类型转换是不安全的。</p>
+<p>11.虚函数表的大小是4个字节，存放的是虚函数的地址。虚函数表是一个数组，存放的是虚函数的地址。每个类都有一个虚函数表，存放该类的虚函数的地址。每个对象都有一个指针，指向该对象所属类的虚函数表。</p>
+<h2 id="未归类"><a href="#未归类" class="headerlink" title="未归类"></a><span id="未归类">未归类</span></h2><p>0.面向对象三个特性：封装（data abstraction）、继承（inheritance）、多态（polymorphism）</p>
+<p>1.inline函数必须在头文件中定义，否则会报错</p>
 <p>2.不能以ostream对象作为参数传递给函数，因为ostream对象是一个流对象，不能被复制，只能被引用或指针传递</p>
 <pre><code class="cpp">void print(ostream&amp; os)&#123; // 正确
     os &lt;&lt; &quot;Hello World&quot;;
@@ -440,6 +475,7 @@ public:
 //不能修饰非成员函数，因为非成员函数没有this指针，没有意义
 friend void f() const&#123;&#125;; //错误！friend函数不是成员函数，不能加const 
 </code></pre>
+<p>5.必须在初始化列表中初始化的成员变量有：const成员变量，引用成员变量，（如果存在继承关系，派生类必须在其初始化列表中调用基类的构造函数</p>
 <h2 id="一些英文"><a href="#一些英文" class="headerlink" title="一些英文"></a><span id="一些英文">一些英文</span></h2><p>1.argument：参数<br>2.pre-&#x2F;prefix：前缀 postfix：后缀</p>
 
     </div>
