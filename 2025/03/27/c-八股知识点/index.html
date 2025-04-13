@@ -193,7 +193,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/c/" style="color: #03a9f4">
+                <a href="/tags/c/" style="color: #00bcd4">
                     c++
                 </a>
             </span>
@@ -432,9 +432,10 @@ public:
 </code></pre>
 <p>7.派生类会隐藏基类的同名成员函数，如果基类中Overloading了两个virtual f()，在派生类中Overriding其中一个，那么基类中的另一个就不能再被调用；或者Overloading了f()，那么基类中的f()就不能再被调用。除非用作用域限定符。</p>
 <p>8.构造函数不能是虚函数，因为构造函数不能被多态调用。</p>
-<p>9.析构函数可以是虚函数，用虚函数更安全</p>
+<p>9.析构函数可以是虚函数，用虚函数更安全。在析构时，会先调用派生类的析构函数，再调用基类的析构函数。</p>
 <p>10.向上类型转换是安全的，但向下类型转换是不安全的。</p>
 <p>11.虚函数表的大小是4个字节，存放的是虚函数的地址。虚函数表是一个数组，存放的是虚函数的地址。每个类都有一个虚函数表，存放该类的虚函数的地址。每个对象都有一个指针，指向该对象所属类的虚函数表。</p>
+<p>12.如果在基类中声明了一个Base* clone()，返回指向当前对象副本的指针return new Base(<em>this)，然后在两个派生类A, B中分别重写Base</em> clone()（注意要写Base* clone而不是A* clone或B* clone，不然就只能return new A或B而不能return new Base了），此时如果返回值写return new A(*this)或B(*this)，那么调用clone()时返回的是派生类的对象；如果写return new Base(*this)，那么调用clone()时返回的是基类的对象。</p>
 <h2 id="未归类"><a href="#未归类" class="headerlink" title="未归类"></a><span id="未归类">未归类</span></h2><p>0.面向对象三个特性：封装（data abstraction）、继承（inheritance）、多态（polymorphism）</p>
 <p>1.inline函数必须在头文件中定义，否则会报错</p>
 <p>2.不能以ostream对象作为参数传递给函数，因为ostream对象是一个流对象，不能被复制，只能被引用或指针传递</p>
@@ -476,6 +477,19 @@ public:
 friend void f() const&#123;&#125;; //错误！friend函数不是成员函数，不能加const 
 </code></pre>
 <p>5.必须在初始化列表中初始化的成员变量有：const成员变量，引用成员变量，（如果存在继承关系，派生类必须在其初始化列表中调用基类的构造函数</p>
+<p>6.获取函数调用时间的方法：</p>
+<pre><code class="cpp">#include &lt;time.h&gt;
+
+void TestFunc() &#123;&#125;
+
+clock_t start, end;
+
+start = clock(); // 获取开始时间
+TestFunc();
+end = clock(); // 获取结束时间
+
+double time_used = (double)(end - start) / CLOCKS_PER_SEC; // 计算函数调用时间
+</code></pre>
 <h2 id="一些英文"><a href="#一些英文" class="headerlink" title="一些英文"></a><span id="一些英文">一些英文</span></h2><p>1.argument：参数<br>2.pre-&#x2F;prefix：前缀 postfix：后缀</p>
 
     </div>
