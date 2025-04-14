@@ -213,6 +213,8 @@
 <li><a href="#13">13.Dynamic Object Creation</a></li>
 <li><a href="#14">14.Inheritance &amp; Composition</a></li>
 <li><a href="#15">15.Polymorphism and Virtual Functions</a></li>
+<li><a href="#16">16.Templates</a></li>
+<li><a href="#17">拓展：c++标准库</a></li>
 <li><a href="#%E6%9C%AA%E5%BD%92%E7%B1%BB">未归类</a></li>
 <li><a href="#%E4%B8%80%E4%BA%9B%E8%8B%B1%E6%96%87">一些英文</a></li>
 </ul>
@@ -436,10 +438,102 @@ public:
 <p>10.向上类型转换是安全的，但向下类型转换是不安全的。</p>
 <p>11.虚函数表的大小是4个字节，存放的是虚函数的地址。虚函数表是一个数组，存放的是虚函数的地址。每个类都有一个虚函数表，存放该类的虚函数的地址。每个对象都有一个指针，指向该对象所属类的虚函数表。</p>
 <p>12.如果在基类中声明了一个Base* clone()，返回指向当前对象副本的指针return new Base(<em>this)，然后在两个派生类A, B中分别重写Base</em> clone()（注意要写Base* clone而不是A* clone或B* clone，不然就只能return new A或B而不能return new Base了），此时如果返回值写return new A(*this)或B(*this)，那么调用clone()时返回的是派生类的对象；如果写return new Base(*this)，那么调用clone()时返回的是基类的对象。</p>
-<h2 id="未归类"><a href="#未归类" class="headerlink" title="未归类"></a><span id="未归类">未归类</span></h2><p>0.面向对象三个特性：封装（data abstraction）、继承（inheritance）、多态（polymorphism）</p>
-<p>1.inline函数必须在头文件中定义，否则会报错</p>
-<p>2.不能以ostream对象作为参数传递给函数，因为ostream对象是一个流对象，不能被复制，只能被引用或指针传递</p>
-<pre><code class="cpp">void print(ostream&amp; os)&#123; // 正确
+<h2 id="Templates-模板"><a href="#Templates-模板" class="headerlink" title=" Templates 模板"></a><span id="16"> Templates 模板</span></h2><p>1.当几个函数或者类中只有部分代码不同时（如参数类型不同），可以用模板来实现代码的重用。</p>
+<p>2.函数模板基本语法：</p>
+<pre><code class="cpp">template&lt;typename T1, typename T2&gt;//类型参数列表
+T1 Max(T1 a, T2 b)&#123;
+    return (a &gt; T1(b)) ? a : T1(b); //类型转换
+&#125;
+
+int main()&#123;
+    cout &lt;&lt; Max(&#39;a&#39;, 3) &lt;&lt; endl; 
+    return 0;
+&#125;
+</code></pre>
+<p>3.函数模板也可以重载</p>
+<p>4.类模板基本语法：</p>
+<pre><code class="cpp">template&lt;typename T1, typename T2&gt;
+class Test&#123;
+    public:
+         Test(T1 x, T2 y):a(x),b(y)&#123;&#125;;
+         void print();
+    private:
+        T1 a;
+        T2 b;
+&#125;;
+
+void Test&lt;T1, T2&gt;::print()&#123; //成员函数在类外定义必须要用函数模板
+    cout &lt;&lt; &quot;a = &quot; &lt;&lt; a &lt;&lt; &quot; b = &quot; &lt;&lt; b &lt;&lt; endl;
+&#125;
+
+int main()&#123;
+    Test&lt;int, char&gt; t(10, &#39;a&#39;);
+    t.print();
+    return 0;
+&#125;
+</code></pre>
+<p>5.从模板类派生出非模板类：</p>
+<pre><code class="cpp">template&lt;typename T&gt;
+class Base&#123;
+    //
+&#125;;
+class Derived : public Base&lt;int&gt;&#123; //类型参数应实例化
+    //
+&#125;;
+</code></pre>
+<p>6.从类模板派生出类模板：</p>
+<pre><code class="cpp">template&lt;typename T&gt;
+class Base&#123;
+    //
+&#125;;
+
+template&lt;typename T&gt;
+class Derived : public Base&lt;T&gt;&#123; //类型参数应实例化
+    //
+&#125;;
+</code></pre>
+<p>7.例：冒牌排序的函数模板实现</p>
+<pre><code class="cpp">template&lt;typename T&gt;
+void BubbleSort(T arr[], int n)&#123;
+    for(int i = 0; i &lt; n-1; i++)&#123;
+        for(int j = 0; j &lt; n-i-1; j++)&#123;
+            if(arr[j] &gt; arr[j+1])&#123;
+                T temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+
+int main()&#123;
+    int arr[] = &#123;5, 2, 8, 3, 1, 9, 6, 7, 4&#125;;
+    int n = sizeof(arr)/sizeof(arr[0]);
+    BubbleSort(arr, n);
+    for(int i = 0; i &lt; n; i++)&#123;
+        cout &lt;&lt; arr[i] &lt;&lt; &quot; &quot;;
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+<p>8.类模板的继承：</p>
+<pre><code class="cpp">template&lt;typename T&gt;
+class Base&#123;
+    //
+&#125;;
+
+## &lt;span id=&quot;17&quot;&gt;c++标准库（中文教材第10章）&lt;/span&gt;
+
+
+
+## &lt;span id=&quot;未归类&quot;&gt;未归类&lt;/span&gt;
+0.面向对象三个特性：封装（data abstraction）、继承（inheritance）、多态（polymorphism）
+
+1.inline函数必须在头文件中定义，否则会报错
+
+2.不能以ostream对象作为参数传递给函数，因为ostream对象是一个流对象，不能被复制，只能被引用或指针传递
+```cpp
+void print(ostream&amp; os)&#123; // 正确
     os &lt;&lt; &quot;Hello World&quot;;
 &#125;
 void print(ostream os)&#123; // 错误
@@ -491,6 +585,7 @@ end = clock(); // 获取结束时间
 double time_used = (double)(end - start) / CLOCKS_PER_SEC; // 计算函数调用时间
 </code></pre>
 <h2 id="一些英文"><a href="#一些英文" class="headerlink" title="一些英文"></a><span id="一些英文">一些英文</span></h2><p>1.argument：参数<br>2.pre-&#x2F;prefix：前缀 postfix：后缀</p>
+<h2 id="期末不考内容"><a href="#期末不考内容" class="headerlink" title="期末不考内容"></a><span id="期末不考">期末不考内容</span></h2><p>以下章节为中文教材<br>1.第四章-指向成员的指针<br>2.第五章-函数对象<br>3.第七章-动态绑定<br>4.第八章-模版的重载、专门化，类模板的继承<br>5.标准库</p>
 
     </div>
     
