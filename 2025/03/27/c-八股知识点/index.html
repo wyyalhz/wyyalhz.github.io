@@ -193,7 +193,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/c/" style="color: #ff7d73">
+                <a href="/tags/c/" style="color: #00a596">
                     c++
                 </a>
             </span>
@@ -492,48 +492,24 @@ class Derived : public Base&lt;T&gt;&#123; //类型参数应实例化
     //
 &#125;;
 </code></pre>
-<p>7.例：冒牌排序的函数模板实现</p>
+<p>7.模板类成员函数的定义必须要写在.h文件中而不能写在.cpp文件中，而且要写在类外定义。</p>
+<p>8.模板类中有友元函数时，前面要单独写一行template<typename U></p>
 <pre><code class="cpp">template&lt;typename T&gt;
-void BubbleSort(T arr[], int n)&#123;
-    for(int i = 0; i &lt; n-1; i++)&#123;
-        for(int j = 0; j &lt; n-i-1; j++)&#123;
-            if(arr[j] &gt; arr[j+1])&#123;
-                T temp = arr[j];
-                arr[j] = arr[j+1];
-                arr[j+1] = temp;
-            &#125;
-        &#125;
-    &#125;
-&#125;
-
-int main()&#123;
-    int arr[] = &#123;5, 2, 8, 3, 1, 9, 6, 7, 4&#125;;
-    int n = sizeof(arr)/sizeof(arr[0]);
-    BubbleSort(arr, n);
-    for(int i = 0; i &lt; n; i++)&#123;
-        cout &lt;&lt; arr[i] &lt;&lt; &quot; &quot;;
-    &#125;
-    return 0;
-&#125;
-</code></pre>
-<p>8.类模板的继承：</p>
-<pre><code class="cpp">template&lt;typename T&gt;
-class Base&#123;
+class A&#123;
     //
+    template&lt;typename U&gt;
+    friend void f(U); // 友元函数模板
 &#125;;
 
-## &lt;span id=&quot;17&quot;&gt;c++标准库（中文教材第10章）&lt;/span&gt;
-
-
-
-## &lt;span id=&quot;未归类&quot;&gt;未归类&lt;/span&gt;
-0.面向对象三个特性：封装（data abstraction）、继承（inheritance）、多态（polymorphism）
-
-1.inline函数必须在头文件中定义，否则会报错
-
-2.不能以ostream对象作为参数传递给函数，因为ostream对象是一个流对象，不能被复制，只能被引用或指针传递
-```cpp
-void print(ostream&amp; os)&#123; // 正确
+template&lt;typename U&gt;
+void f(U u)&#123;
+    //
+&#125;
+</code></pre>
+<h2 id="c-标准库（中文教材第10章）"><a href="#c-标准库（中文教材第10章）" class="headerlink" title="c++标准库（中文教材第10章）"></a><span id="17">c++标准库（中文教材第10章）</span></h2><h2 id="未归类"><a href="#未归类" class="headerlink" title="未归类"></a><span id="未归类">未归类</span></h2><p>0.面向对象三个特性：封装（data abstraction）、继承（inheritance）、多态（polymorphism）</p>
+<p>1.inline函数必须在头文件中定义，否则会报错</p>
+<p>2.不能以ostream对象作为参数传递给函数，因为ostream对象是一个流对象，不能被复制，只能被引用或指针传递</p>
+<pre><code class="cpp">void print(ostream&amp; os)&#123; // 正确
     os &lt;&lt; &quot;Hello World&quot;;
 &#125;
 void print(ostream os)&#123; // 错误
