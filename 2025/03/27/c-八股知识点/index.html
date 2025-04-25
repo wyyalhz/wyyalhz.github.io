@@ -193,7 +193,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/c/" style="color: #00a596">
+                <a href="/tags/c/" style="color: #ffa2c4">
                     c++
                 </a>
             </span>
@@ -506,6 +506,15 @@ void f(U u)&#123;
     //
 &#125;
 </code></pre>
+<p>9.模板默认参数用法：</p>
+<pre><code class="cpp">template&lt;typename T, int N = 10&gt; // N为默认参数
+class MyArray&#123;
+    //
+&#125;;
+
+MyArray&lt;int&gt; arr1; // N默认为10
+MyArray&lt;int, 20&gt; arr2; // N为20
+</code></pre>
 <h2 id="c-标准库（中文教材第10章）"><a href="#c-标准库（中文教材第10章）" class="headerlink" title="c++标准库（中文教材第10章）"></a><span id="17">c++标准库（中文教材第10章）</span></h2><h2 id="未归类"><a href="#未归类" class="headerlink" title="未归类"></a><span id="未归类">未归类</span></h2><p>0.面向对象三个特性：封装（data abstraction）、继承（inheritance）、多态（polymorphism）</p>
 <p>1.inline函数必须在头文件中定义，否则会报错</p>
 <p>2.不能以ostream对象作为参数传递给函数，因为ostream对象是一个流对象，不能被复制，只能被引用或指针传递</p>
@@ -559,6 +568,14 @@ TestFunc();
 end = clock(); // 获取结束时间
 
 double time_used = (double)(end - start) / CLOCKS_PER_SEC; // 计算函数调用时间
+</code></pre>
+<p>7.require.h下的require函数语句可替换为：</p>
+<pre><code class="cpp">require(expression); // 表达式为true，否则抛出异常
+
+if(!expression)&#123;
+    std::cerr &lt;&lt; &quot;Cannot peek(), stack is empty!&quot; &lt;&lt; std::endl;//cerr输出到cerr设备，一般为屏幕
+    exit(1);
+&#125;
 </code></pre>
 <h2 id="一些英文"><a href="#一些英文" class="headerlink" title="一些英文"></a><span id="一些英文">一些英文</span></h2><p>1.argument：参数<br>2.pre-&#x2F;prefix：前缀 postfix：后缀</p>
 <h2 id="期末不考内容"><a href="#期末不考内容" class="headerlink" title="期末不考内容"></a><span id="期末不考">期末不考内容</span></h2><p>以下章节为中文教材<br>1.第四章-指向成员的指针<br>2.第五章-函数对象<br>3.第七章-动态绑定<br>4.第八章-模版的重载、专门化，类模板的继承<br>5.标准库</p>

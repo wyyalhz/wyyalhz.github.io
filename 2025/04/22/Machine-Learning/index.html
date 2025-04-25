@@ -1,0 +1,377 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>Machine Learning | wyyalhz的Blog</title>
+    <meta name="author" content="Rain Gu" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar2.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+
+    <!-- live2d御坂美琴 -->
+     <script src="/L2D/live2d.min.js"></script>
+     <script src="/L2D/live2dcubismcore.js"></script>
+     <script src="/L2D/live2dcubismcore.min.js"></script>
+    
+    <script defer="defer" src="/js/chunk-vendors.405dbdb2.js"></script>
+    <script defer="defer" src="/js/app.eab99ad8.js"></script>
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>正在泥土中放置石头</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>WYYALHZ的BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;WYYALHZ的BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>Machine Learning</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/4/22
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E5%AD%A6%E6%A0%A1-%E8%80%83%E8%AF%95/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                学校/考试
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/ML/" style="color: #00bcd4">
+                    ML
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/python/" style="color: #03a9f4">
+                    python
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>吴恩达机器学习课程笔记，仅记录一些重要概念，配合吴恩达jupyter notebook笔记使用</p>
+<span id="more"></span>
+
+<h2 id="1-欢迎来到机器学习"><a href="#1-欢迎来到机器学习" class="headerlink" title="1.欢迎来到机器学习"></a>1.欢迎来到机器学习</h2><h4 id="1-5-向量化与多元线性回归"><a href="#1-5-向量化与多元线性回归" class="headerlink" title="1.5 向量化与多元线性回归"></a>1.5 向量化与多元线性回归</h4><p>vectorization 向量化：(numpy库)<br>    1、使代码简洁<br>    2、提高运算效率（循环每个时间点都要进行运算，向量化一次性并行运算）</p>
+<pre><code class="python">import numpy as np
+
+w = np.array([1, 2, 3])
+x = np.array([1, 2, 3])
+b = 1
+
+# 向量化
+y = np.dot(w, x) + b
+</code></pre>
+<p>Normal equation 正规方程：只适用于线性回归，求解w和b，无需梯度下降迭代（了解即可，梯度下降通常是更好的方法）</p>
+<h4 id="1-6-提高梯度下降速度"><a href="#1-6-提高梯度下降速度" class="headerlink" title="1.6 提高梯度下降速度"></a>1.6 提高梯度下降速度</h4><p>feature scaling 特征缩放:可以理解为归一化。如果特征值差异过大，会影响收敛速度，这时将特征值缩放相似范围，可以提高收敛速度。<br>    ·方法：①除以最大值缩放到[0,1]之间；<br>     ②Mean normalization 均值归一化，找到所有样本均值mu，(x-mu)&#x2F;(max-min)缩放到[-1,1]<br>    ③Z-score normalization 标准差归一化，找到所有样本的标准差sigma，(x-mu)&#x2F;sigma</p>
+<p>判断梯度下降是否收敛：<br>    1.learning curve 学习曲线：纵轴为损失函数，横轴为迭代次数，看图形<br>    2.automatic convergence test 自动收敛测试：当损失函数在某一轮迭代后不再下降（小于给定的epsilon），则认为收敛。</p>
+<p>选择合适的学习率：如何合适每次迭代损失函数一定减小，太大会震荡，太小收敛太慢<br>    ·如果很小的学习率依然无法让损失函数一直减小则可能代码有bug</p>
+<p>Feature engineering 特征工程：通过知识和直觉，（通常是）通过转化或组合原始特征来得到新的特征，提高预测准确度</p>
+<p>Polynomial regression 多项式回归</p>
+<h4 id="1-7-logestic-regression-逻辑回归"><a href="#1-7-logestic-regression-逻辑回归" class="headerlink" title="1.7 logestic regression 逻辑回归"></a>1.7 logestic regression 逻辑回归</h4><p>逻辑回归：虽然带回归二字，但实际是用来分类的，用来解决输出标签y为0或1的二元分类问题</p>
+<p>sigmoid函数：S(z) &#x3D; 1&#x2F;(1+e^(-z))<br>    ·z为线性回归的输出（w·x+b），S(z)为预测的概率值，S(z)越接近1，预测的标签y越可能是1，S(z)越接近0，预测的标签y越可能是0</p>
+<p>decision boundary 决策边界：一般S(z) &#x3D; 0.5，即z&#x3D;0，预测的标签y取值为0或1<br>    ·故可以这么确定决策边界表达式：写出曲线方程，全部移到等号一边，即f(x)&#x3D;0，令z&#x3D;f(x)</p>
+<h4 id="1-8-Cost-function-逻辑回归的代价函数"><a href="#1-8-Cost-function-逻辑回归的代价函数" class="headerlink" title="1.8 Cost function 逻辑回归的代价函数"></a>1.8 Cost function 逻辑回归的代价函数</h4><p>loss function 损失函数<br>    $$<br>    L(f_{\overline{w},b}(\vec{x}^{(i)}),y^{(i)}) &#x3D;<br>    \begin{cases}<br>    -\log\left(f_{\overline{w},b}(\vec{x}^{(i)})\right) &amp; \text{if } y^{(i)} &#x3D; 1 \<br>    -\log\left(1 - f_{\overline{w},b}(\vec{x}^{(i)})\right) &amp; \text{if } y^{(i)} &#x3D; 0<br>    \end{cases}<br>    $$</p>
+<p>cost function 代价函数：J(w,b) &#x3D; -1&#x2F;m * sum (L)</p>
+<p>简化版损失函数：y*log(S(z)) + (1-y)*log(1-S(z))（y取0或1）</p>
+<p>简化版代价函数：J(w,b) &#x3D; -1&#x2F;m * sum(y*log(S(z)) + (1-y)*log(1-S(z))) （y取0或1）</p>
+<h4 id="1-9-梯度下降实现逻辑回归"><a href="#1-9-梯度下降实现逻辑回归" class="headerlink" title="1.9 梯度下降实现逻辑回归"></a>1.9 梯度下降实现逻辑回归</h4><p>梯度下降：<br>$$<br>    w_j &#x3D; w_j - α·\frac{\partial J}{\partial w_j}J(w,b)<br>$$<br>$$<br>    b &#x3D; b - α·\frac{\partial J}{\partial b}J(w,b)<br>$$<br>求导后<br>$$<br>w_j &#x3D; w_j - \alpha<br>\begin{bmatrix}<br>\frac{1}{m} \sum_{i&#x3D;1}^m (f_{\overline{w}, b}(\vec{x}^{(i)}) - y^{(i)})x_j^{(i)} \<br>\end{bmatrix}<br>$$<br>$$<br>b &#x3D; b - \alpha<br>\begin{bmatrix}<br>\frac{1}{m} \sum_{i&#x3D;1}^m (f_{\overline{w}, b}(\vec{x}^{(i)}) - y^{(i)})<br>\end{bmatrix}<br>$$<br>形式上线性回归一样，只是f(x)不再是wx+b，而是S(z)&#x3D;1&#x2F;(1+e^(-z))</p>
+<h4 id="1-10-过拟合与正则化"><a href="#1-10-过拟合与正则化" class="headerlink" title="1.10 过拟合与正则化"></a>1.10 过拟合与正则化</h4><p>Overfitting 过拟合：模型过于复杂，完美拟合了每一个训练数据，导致泛化能力差，预测结果不准确。（方差过大）<br>    ·解决方法：<br>     ①collecting more training data<br>     ②use fewer features<br>     ③regularization（L1、L2）正则化</p>
+<p>regularization 正则化<br>    ·与减少特征相比：正则化保留所有特征，但减少系数，使这些特征影响变小<br>    ·一般feature很多时，我们不知道应该<span style="color:red">penalize</span>惩罚哪些特征，所以通常penalize所有特征<br>    ·是否惩罚b影响不大，通常不惩罚<br>    ·代价函数：在原先J的基础上加上正则化项（惩罚项）<br>    $$<br>    J(w,b) &#x3D; -1&#x2F;m * sum(y*log(S(z)) + (1-y)*log(1-S(z))) + \frac{\lambda}{2m} \sum_{j&#x3D;1}^n w_j^2<br>    $$<br>    这样在寻找min J的过程中，惩罚项会使w变小<br>    ·如果lambda过大，则惩罚过多，导致w过小，模型过于简单，可能欠拟合；如果lambda过小，则惩罚过少，导致w过大，模型过于复杂，可能过拟合。</p>
+<h2 id="考试复习"><a href="#考试复习" class="headerlink" title="考试复习"></a>考试复习</h2><ol>
+<li><p>机器学习基础</p>
+<ul>
+<li>监督学习（分类、回归）</li>
+<li>无监督学习（聚类）</li>
+<li>强化学习</li>
+<li>模型评估与验证（训练集、验证集、测试集、交叉验证）</li>
+<li>过拟合与欠拟合、偏差与方差权衡</li>
+</ul>
+</li>
+<li><p>监督学习算法</p>
+<ul>
+<li>K近邻（KNN）</li>
+<li>线性回归（最小二乘法、梯度下降）</li>
+<li>逻辑回归（分类问题、最大似然估计）</li>
+<li>朴素贝叶斯分类器</li>
+<li>决策树</li>
+<li>支持向量机（SVM）</li>
+</ul>
+</li>
+<li><p>无监督学习算法</p>
+<ul>
+<li>K均值聚类（K-means）</li>
+<li>层次聚类</li>
+<li>DBSCAN（密度聚类）</li>
+</ul>
+</li>
+<li><p>神经网络与深度学习</p>
+<ul>
+<li>感知机</li>
+<li>多层神经网络（MLP）</li>
+<li>反向传播算法</li>
+<li>卷积神经网络（CNN）</li>
+<li>梯度下降优化（SGD、Adagrad）</li>
+</ul>
+</li>
+<li><p>强化学习</p>
+<ul>
+<li>马尔可夫决策过程（MDP）</li>
+<li>值迭代与策略迭代</li>
+<li>Q学习与深度Q网络（DQN）</li>
+</ul>
+</li>
+<li><p>优化方法</p>
+<ul>
+<li>梯度下降（批量梯度下降、随机梯度下降）</li>
+<li>学习率调整</li>
+<li>正则化（L1、L2）</li>
+</ul>
+</li>
+<li><p>其他重要概念</p>
+<ul>
+<li>特征工程</li>
+<li>模型选择与超参数调优</li>
+<li>损失函数（均方误差、交叉熵）</li>
+<li>激活函数（Sigmoid、ReLU、Tanh）</li>
+</ul>
+</li>
+</ol>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2025 wyyalhz的Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Rain Gu
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+
+    <!-- 鼠标点击特效 -->
+    <canvas
+        id="fireworks"
+        style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+    ></canvas>
+    <script src="https://s4.zstatic.net/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="/js/fireworks.min.js"></script>
+
+    <!-- 鼠标移动流星特效 -->
+    <canvas
+        id="background"
+        style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"
+    ></canvas>
+    <script src="/js/mouseFlash.min.js"></script>
+
+    <script src="https://fastly.jsdelivr.net/npm/live2d-widgets@0/autoload.js"></script>
+
+    <!-- 音乐播放器 -->
+    <!-- .css file path -->
+    <link rel="stylesheet" href="/css/index.bundle.css">
+
+    <!-- petite-vue CDN -->
+    <script src="https://unpkg.com/petite-vue"></script>
+    <!-- .js file path -->
+    <script src="/js/index.bundle.js"></script>
+    <!-- add songs -->
+     <script src="/js/index.music.js"></script>
+
+</body>
+</html>
