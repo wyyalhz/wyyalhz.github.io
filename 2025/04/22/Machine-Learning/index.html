@@ -198,7 +198,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/ML/" style="color: #00a596">
+                <a href="/tags/ML/" style="color: #03a9f4">
                     ML
                 </a>
             </span>
@@ -244,7 +244,25 @@ y = np.dot(w, x) + b
 <h4 id="1-9-梯度下降实现逻辑回归"><a href="#1-9-梯度下降实现逻辑回归" class="headerlink" title="1.9 梯度下降实现逻辑回归"></a>1.9 梯度下降实现逻辑回归</h4><p>梯度下降：<br>$$ w_j &#x3D; w_j - α·\frac{\partial J}{\partial w_j}J(w,b) $$<br>$$ b &#x3D; b - α·\frac{\partial J}{\partial b}J(w,b) $$<br>求导后<br>$$ w_j &#x3D; w_j - \alpha \begin{bmatrix} \frac{1}{m} \sum_{i&#x3D;1}^m (f_{\overline{w}, b}(\vec{x}^{(i)}) - y^{(i)})x_j^{(i)} \ \end{bmatrix} $$</p>
 <p>$$ b &#x3D; b - \alpha \begin{bmatrix} \frac{1}{m} \sum_{i&#x3D;1}^m (f_{\overline{w}, b}(\vec{x}^{(i)}) - y^{(i)}) \end{bmatrix} $$<br>形式上线性回归一样，只是f(x)不再是wx+b，而是S(z)&#x3D;1&#x2F;(1+e^(-z))</p>
 <h4 id="1-10-过拟合与正则化"><a href="#1-10-过拟合与正则化" class="headerlink" title="1.10 过拟合与正则化"></a>1.10 过拟合与正则化</h4><p>Overfitting 过拟合：模型过于复杂，完美拟合了每一个训练数据，导致泛化能力差，预测结果不准确。（方差过大）<br>    ·解决方法：<br>     ①collecting more training data<br>     ②use fewer features<br>     ③regularization（L1、L2）正则化</p>
-<p>regularization 正则化<br>    ·与减少特征相比：正则化保留所有特征，但减少系数，使这些特征影响变小<br>    ·一般feature很多时，我们不知道应该<span style="color:red">penalize</span>惩罚哪些特征，所以通常penalize所有特征<br>    ·是否惩罚b影响不大，通常不惩罚<br>    ·代价函数：在原先J的基础上加上正则化项（惩罚项）<br>    $$ J(w,b) &#x3D; -1&#x2F;m * sum(y*log(S(z)) + (1-y)*log(1-S(z))) + \frac{\lambda}{2m} \sum_{j&#x3D;1}^n w_j^2 $$<br>    这样在寻找min J的过程中，惩罚项会使w变小<br>    ·如果lambda过大，则惩罚过多，导致w过小，模型过于简单，可能欠拟合；如果lambda过小，则惩罚过少，导致w过大，模型过于复杂，可能过拟合。</p>
+<p>regularization 正则化<br>    ·与减少特征相比：正则化保留所有特征，但减少系数，使这些特征影响变小<br>    ·一般feature很多时，我们不知道应该<span style="color:red">penalize</span>惩罚哪些特征，所以通常penalize所有特征<br>    ·是否惩罚b影响不大，通常不惩罚<br>    ·代价函数：在原先J的基础上加上正则化项（惩罚项）<br>    $$ J(w,b) &#x3D; -1&#x2F;m * sum(y*log(S(z)) + (1-y)*log(1-S(z))) + \frac{\lambda}{2m} \sum_{j&#x3D;1}^n w_j^2 $$<br>    这样在寻找min J的过程中，惩罚项会使w变小<br>    ·如果lambda过大，则惩罚过多，导致w过小，模型过于简单，可能欠拟合；如果lambda过小，则惩罚过少，导致w过大，模型过于复杂，可能过拟合。<br>    ·L1与L2正则化：L1正则化：惩罚绝对值，L2正则化：惩罚平方</p>
+<p>正则化梯度下降<br>    ·如果把正则项提出来与前面的w_j合并，则wj的更新公式为：<br>    $$ w_j &#x3D; w_j(1 - \alpha \frac{\lambda}{m} w_j ) - \begin{bmatrix} \frac{1}{m} \sum_{i&#x3D;1}^m (f_{\overline{w}, b}(\vec{x}^{(i)}) - y^{(i)})x_j^{(i)} \end{bmatrix} $$<br>    后面就是普通的梯度下降，前面相当于每次把w_j减小了一点点，这就是惩罚w_j的原理。</p>
+<p>正则化逻辑回归<br>    同理，正则化逻辑回归w_j的更新公式为：<br>    $$ w_j &#x3D; w_j(1 - \alpha \frac{\lambda}{m} w_j ) - \alpha \begin{bmatrix} \frac{1}{m} \sum_{i&#x3D;1}^m (f_{\overline{w}, b}(\vec{x}^{(i)}) - y^{(i)})x_j^{(i)} \ \end{bmatrix} $$</p>
+<hr>
+<p>恭喜！第一部分结束了！</p>
+<h2 id="2-高级学习算法（神经网络、决策树）"><a href="#2-高级学习算法（神经网络、决策树）" class="headerlink" title="2.高级学习算法（神经网络、决策树）"></a>2.高级学习算法（神经网络、决策树）</h2><h2 id="3-无监督学习"><a href="#3-无监督学习" class="headerlink" title="3.无监督学习"></a>3.无监督学习</h2><p>无监督学习只有x，没有y，主要用于数据聚类、降维、数据降噪等。</p>
+<h4 id="3-2-K-means聚类"><a href="#3-2-K-means聚类" class="headerlink" title="3.2 K-means聚类"></a>3.2 K-means聚类</h4><p>Clustering 聚类</p>
+<p>K-means聚类：<br>    步骤：<br>        1. 随机选择K个初始质心<br>        2. 计算每个样本到K个质心的距离<br>        3. 将每个样本分配到离它最近的质心<br>        4. 重新计算K个质心的位置<br>        5. 重复步骤2-4，直到质心不再移动或达到最大迭代次数<br>    优点：1. 简单 2. 快速 3. 结果易于理解 4.即使数据不那么好明显地分为独立的组或簇，也能正常工作<br>    缺点：1. 初始值对结果影响大 2. 可能收敛到局部最小值 3. 可能陷入局部最优解</p>
+<p>代价函数：也被称为distortion 失真函数<br>    J(c,u) &#x3D; 1&#x2F;m * sum||x_i - u_c(i)||^2</p>
+<p>initialize cluster centroids初始化聚类中心：随机选几个样本作为初始质心<br>    问题：初始值对结果影响大，可能收敛到局部最小值<br>    解决方法：多次随机初始化，取J最小的结果作为最终结果</p>
+<p>how many clusters to choose 选择聚类个数K:根据K-means算法的后续表现和实际需求选择</p>
+<h2 id="其他考试内容"><a href="#其他考试内容" class="headerlink" title="其他考试内容"></a>其他考试内容</h2><p>朴素贝叶斯分类器：选择P(A|x)·P(x)最大的x作为预测类别（贝叶斯定理：P(A|B) &#x3D; P(B|A)P(A)&#x2F;P(B)</p>
+<p>两点间距离<br>    欧式距离：sqrt((x1-x2)^2+(y1-y2)^2)<br>    曼哈顿距离：|x1-x2|+|y1-y2|</p>
+<p>KNN K临近算法<br>    计算新样本与所有训练样本的距离（常用欧氏距离），选取K个最近邻，若分类，统计K个邻居的标签，投票决定新样本的类别；若回归，取均值作为结果</p>
+<p>CNN 卷积神经网络：用于处理图像的神经网络。比如识别猫🐱、狗🐶、人脸、数字图像等。<br>    卷积层（Convolution）	用“滤镜”扫描图片，提取边缘、纹理等特征（就像打格子）<br>    池化层（Pooling）	压缩图像尺寸，保留重要特征（比如选最大值 Max Pooling）<br>    激活函数（ReLU）	加非线性，让模型能学更复杂的东西<br>    全连接层（FC）	把提取到的特征“整合”做最终分类，比如输出：猫&#x2F;狗&#x2F;人</p>
+<p>DQN 深度Q网络：强化学习+深度学习结合，用来玩游戏、机器人控制。比如让AI学会玩贪吃蛇、Flappy Bird、Atari游戏。<br>    Q-Learning	强化学习算法：记录“在某状态下做某动作的价值”Q值<br>    深度网络	用神经网络代替传统的Q表，能处理复杂状态（比如游戏画面）<br>    状态（state）	当前环境信息，比如：游戏画面、坐标、血量等<br>    动作（action）	AI能做的选择，比如“跳”或“不跳”<br>    奖励（reward）	做对了给分，做错了扣分，学会最大化长期奖励</p>
+<p>MDP 马尔科夫决策过程：当前状态只由“上一步”决定，跟更早的历史无关。<br>    要素	       含义	                举例（玩游戏）<br>    S（状态）	   当前处于什么环境	      游戏画面<br>    A（动作）	   可以做哪些选择	      跳、不跳<br>    R（奖励）	   执行动作后得到的分数	   +1 或 -10<br>    T（状态转移）	执行动作后到哪儿了	   跳后位置变了<br>    γ（折扣因子）	未来奖励的重要程度	   0.9 代表未来奖励也重要</p>
+<p>Q-Learning 强化学习算法：用一个 Q 表，记录每个状态下选择动作的价值 Q(s, a)，不断学习哪个动作在长期更划算。最终找到一个策略 π，使得 累积奖励最大<br>    更新公式：Q(s, a) &#x3D; Q(s, a) + α(R + γ max Q(s’, a’) - Q(s, a))<br>    其中，α 是学习率，R 是奖励，γ 是折扣因子，s’ 是下一个状态，max_a Q(s’, a) 是预测下一步最优动作的价值<br>    例如，走迷宫<br>        状态：你的位置<br>        动作：向上&#x2F;下&#x2F;左&#x2F;右<br>        奖励：走到出口 +10，撞墙 -1<br>        目标：找到走出迷宫的最优策略</p>
+<p>MLP 多层感知机：最基础的前馈神经网络（Feedforward Neural Network），也是神经网络的入门结构</p>
 <h2 id="考试复习"><a href="#考试复习" class="headerlink" title="考试复习"></a>考试复习</h2><ol>
 <li><p>机器学习基础</p>
 <ul>
