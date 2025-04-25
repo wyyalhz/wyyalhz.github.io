@@ -198,14 +198,14 @@
             
             <span class="tag">
                 
-                <a href="/tags/ML/" style="color: #00bcd4">
+                <a href="/tags/ML/" style="color: #00a596">
                     ML
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/python/" style="color: #ffa2c4">
+                <a href="/tags/python/" style="color: #ff7d73">
                     python
                 </a>
             </span>
@@ -237,13 +237,14 @@ y = np.dot(w, x) + b
 <h4 id="1-7-logestic-regression-逻辑回归"><a href="#1-7-logestic-regression-逻辑回归" class="headerlink" title="1.7 logestic regression 逻辑回归"></a>1.7 logestic regression 逻辑回归</h4><p>逻辑回归：虽然带回归二字，但实际是用来分类的，用来解决输出标签y为0或1的二元分类问题</p>
 <p>sigmoid函数：S(z) &#x3D; 1&#x2F;(1+e^(-z))<br>    ·z为线性回归的输出（w·x+b），S(z)为预测的概率值，S(z)越接近1，预测的标签y越可能是1，S(z)越接近0，预测的标签y越可能是0</p>
 <p>decision boundary 决策边界：一般S(z) &#x3D; 0.5，即z&#x3D;0，预测的标签y取值为0或1<br>    ·故可以这么确定决策边界表达式：写出曲线方程，全部移到等号一边，即f(x)&#x3D;0，令z&#x3D;f(x)</p>
-<h4 id="1-8-Cost-function-逻辑回归的代价函数"><a href="#1-8-Cost-function-逻辑回归的代价函数" class="headerlink" title="1.8 Cost function 逻辑回归的代价函数"></a>1.8 Cost function 逻辑回归的代价函数</h4><p>loss function 损失函数<br>    $$<br>    \begin{aligned}<br>    L(f_{\overline{w},b}(\vec{x}^{(i)}),y^{(i)}) &#x3D;<br>    \begin{cases}<br>    -\log\left(f_{\overline{w},b}(\vec{x}^{(i)})\right) &amp; \text{if } y^{(i)} &#x3D; 1 \<br>    -\log\left(1 - f_{\overline{w},b}(\vec{x}^{(i)})\right) &amp; \text{if } y^{(i)} &#x3D; 0<br>    \end{cases}<br>    \end{aligned}<br>    $$</p>
+<h4 id="1-8-Cost-function-逻辑回归的代价函数"><a href="#1-8-Cost-function-逻辑回归的代价函数" class="headerlink" title="1.8 Cost function 逻辑回归的代价函数"></a>1.8 Cost function 逻辑回归的代价函数</h4><p>loss function 损失函数<br>    $$ L(f_{\overline{w},b}(\vec{x}^{(i)}),y^{(i)}) &#x3D; \begin{cases} -\log\left(f_{\overline{w},b}(\vec{x}^{(i)})\right) &amp; \text{if } y^{(i)} &#x3D; 1 \ -\log\left(1 - f_{\overline{w},b}(\vec{x}^{(i)})\right) &amp; \text{if } y^{(i)} &#x3D; 0 \end{cases} $$</p>
 <p>cost function 代价函数：J(w,b) &#x3D; -1&#x2F;m * sum (L)</p>
 <p>简化版损失函数：y*log(S(z)) + (1-y)*log(1-S(z))（y取0或1）</p>
 <p>简化版代价函数：J(w,b) &#x3D; -1&#x2F;m * sum(y*log(S(z)) + (1-y)*log(1-S(z))) （y取0或1）</p>
-<h4 id="1-9-梯度下降实现逻辑回归"><a href="#1-9-梯度下降实现逻辑回归" class="headerlink" title="1.9 梯度下降实现逻辑回归"></a>1.9 梯度下降实现逻辑回归</h4><p>梯度下降：<br>$$ w_j &#x3D; w_j - α·\frac{\partial J}{\partial w_j}J(w,b) $$<br>$$ b &#x3D; b - α·\frac{\partial J}{\partial b}J(w,b) $$<br>求导后<br>$$<br>\begin{aligned}<br>w_j &#x3D; w_j - \alpha<br>\begin{bmatrix}<br>\frac{1}{m} \sum_{i&#x3D;1}^m (f_{\overline{w}, b}(\vec{x}^{(i)}) - y^{(i)})x_j^{(i)} \<br>\end{bmatrix}<br>\end{aligned}<br>$$<br>$$<br>\begin{aligned}<br>b &#x3D; b - \alpha<br>\begin{bmatrix}<br>\frac{1}{m} \sum_{i&#x3D;1}^m (f_{\overline{w}, b}(\vec{x}^{(i)}) - y^{(i)})<br>\end{bmatrix}<br>\end{aligned}<br>$$<br>形式上线性回归一样，只是f(x)不再是wx+b，而是S(z)&#x3D;1&#x2F;(1+e^(-z))</p>
+<h4 id="1-9-梯度下降实现逻辑回归"><a href="#1-9-梯度下降实现逻辑回归" class="headerlink" title="1.9 梯度下降实现逻辑回归"></a>1.9 梯度下降实现逻辑回归</h4><p>梯度下降：<br>$$ w_j &#x3D; w_j - α·\frac{\partial J}{\partial w_j}J(w,b) $$<br>$$ b &#x3D; b - α·\frac{\partial J}{\partial b}J(w,b) $$<br>求导后<br>$$ w_j &#x3D; w_j - \alpha \begin{bmatrix} \frac{1}{m} \sum_{i&#x3D;1}^m (f_{\overline{w}, b}(\vec{x}^{(i)}) - y^{(i)})x_j^{(i)} \ \end{bmatrix} $$</p>
+<p>$$ b &#x3D; b - \alpha \begin{bmatrix} \frac{1}{m} \sum_{i&#x3D;1}^m (f_{\overline{w}, b}(\vec{x}^{(i)}) - y^{(i)}) \end{bmatrix} $$<br>形式上线性回归一样，只是f(x)不再是wx+b，而是S(z)&#x3D;1&#x2F;(1+e^(-z))</p>
 <h4 id="1-10-过拟合与正则化"><a href="#1-10-过拟合与正则化" class="headerlink" title="1.10 过拟合与正则化"></a>1.10 过拟合与正则化</h4><p>Overfitting 过拟合：模型过于复杂，完美拟合了每一个训练数据，导致泛化能力差，预测结果不准确。（方差过大）<br>    ·解决方法：<br>     ①collecting more training data<br>     ②use fewer features<br>     ③regularization（L1、L2）正则化</p>
-<p>regularization 正则化<br>    ·与减少特征相比：正则化保留所有特征，但减少系数，使这些特征影响变小<br>    ·一般feature很多时，我们不知道应该<span style="color:red">penalize</span>惩罚哪些特征，所以通常penalize所有特征<br>    ·是否惩罚b影响不大，通常不惩罚<br>    ·代价函数：在原先J的基础上加上正则化项（惩罚项）<br>    $$<br>    \begin{aligned}<br>    J(w,b) &#x3D; -1&#x2F;m * sum(y*log(S(z)) + (1-y)*log(1-S(z))) + \frac{\lambda}{2m} \sum_{j&#x3D;1}^n w_j^2<br>    \end{aligned}<br>    $$<br>    这样在寻找min J的过程中，惩罚项会使w变小<br>    ·如果lambda过大，则惩罚过多，导致w过小，模型过于简单，可能欠拟合；如果lambda过小，则惩罚过少，导致w过大，模型过于复杂，可能过拟合。<br>$$<br>\begin{bmatrix}<br>a &amp; b \<br>c &amp; d<br>\end{bmatrix}<br>$$</p>
+<p>regularization 正则化<br>    ·与减少特征相比：正则化保留所有特征，但减少系数，使这些特征影响变小<br>    ·一般feature很多时，我们不知道应该<span style="color:red">penalize</span>惩罚哪些特征，所以通常penalize所有特征<br>    ·是否惩罚b影响不大，通常不惩罚<br>    ·代价函数：在原先J的基础上加上正则化项（惩罚项）<br>    $$ J(w,b) &#x3D; -1&#x2F;m * sum(y*log(S(z)) + (1-y)*log(1-S(z))) + \frac{\lambda}{2m} \sum_{j&#x3D;1}^n w_j^2 $$<br>    这样在寻找min J的过程中，惩罚项会使w变小<br>    ·如果lambda过大，则惩罚过多，导致w过小，模型过于简单，可能欠拟合；如果lambda过小，则惩罚过少，导致w过大，模型过于复杂，可能过拟合。</p>
 <h2 id="考试复习"><a href="#考试复习" class="headerlink" title="考试复习"></a>考试复习</h2><ol>
 <li><p>机器学习基础</p>
 <ul>

@@ -198,7 +198,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/blog/" style="color: #00a596">
+                <a href="/tags/blog/" style="color: #03a9f4">
                     blog
                 </a>
             </span>
@@ -286,17 +286,7 @@ core.AppendSongOnTail(&#123;
   img: &#39;/images/songs1.png&#39;,   // Your thumbnail.
 &#125;)
 </code></pre>
-<h2 id="2025-4-25"><a href="#2025-4-25" class="headerlink" title="2025.4.25"></a>2025.4.25</h2><h3 id="启用MathJax和KaTeX支持（渲染数学公式"><a href="#启用MathJax和KaTeX支持（渲染数学公式" class="headerlink" title="启用MathJax和KaTeX支持（渲染数学公式"></a>启用MathJax和KaTeX支持（渲染数学公式</h3><p>做机器学习笔记，打了一堆Latex公式，发现没有显示出来，心都在滴血，让chatgpt看了一下主题配置文件发现有支持但是默认没有开启。</p>
-<pre><code class="yaml">math:
-  enable: true
-  engine: mathjax # 可选项：mathjax 或 katex
-  katex: # 如果选的是 katex，这部分才生效
-    cdn: ...
-  mathjax: # 如果选的是 mathjax，这部分才生效
-    cdn: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-# 推荐保留 mathjax，因为我用的是 $$ ... $$ 语法。
-</code></pre>
-<p>然后，AI不明所以地在结尾问我要不要开启目录跳转功能，想到前面麻烦的目录设置，决定试一试。</p>
+<h2 id="2025-4-25"><a href="#2025-4-25" class="headerlink" title="2025.4.25"></a>2025.4.25</h2><h3 id="启用目录跳转功能"><a href="#启用目录跳转功能" class="headerlink" title="启用目录跳转功能"></a>启用目录跳转功能</h3><p>起因是问ai如何开启数学公式支持，结果稀里糊涂（主要是KaTeX太史，好像只能把公式都输在SS夹着的一行里，不能多行），反而是AI不明所以地在结尾问我要不要开启目录跳转功能，想到前面麻烦的目录设置，决定试一试。</p>
 <pre><code class="yaml">toc:
   enable: true
   number: false  # 若想显示目录编号，可改为 true
