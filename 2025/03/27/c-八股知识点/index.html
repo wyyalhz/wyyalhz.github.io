@@ -198,7 +198,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/c/" style="color: #03a9f4">
+                <a href="/tags/c/" style="color: #00a596">
                     c++
                 </a>
             </span>
@@ -212,6 +212,8 @@
 <span id="more"></span>
 <p>目录：</p>
 <ul>
+<li><a href="#1">1.Class and Object</a></li>
+<li><a href="#3">3.The C in C++</a></li>
 <li><a href="#10">10.Name Control</a></li>
 <li><a href="#11">11.References &amp; the Copy-Constructor</a></li>
 <li><a href="#12">12.Operator Overloading</a></li>
@@ -223,6 +225,271 @@
 <li><a href="#%E6%9C%AA%E5%BD%92%E7%B1%BB">未归类</a></li>
 <li><a href="#%E4%B8%80%E4%BA%9B%E8%8B%B1%E6%96%87">一些英文</a></li>
 </ul>
+<h2 id="1-Class-and-Object"><a href="#1-Class-and-Object" class="headerlink" title="1.Class and Object"></a><span id="1">1.Class and Object</span></h2><p>OOP：Object-Oriented Programming，面向对象编程。<br>三大特征：Encapsulation封装、Inheritance继承、Polymorphism多态</p>
+<h2 id="3-The-C-in-C"><a href="#3-The-C-in-C" class="headerlink" title="3.The C in C++"></a><span id="3">3.The C in C++</span></h2><ol>
+<li></li>
+</ol>
+<pre><code class="cpp">    int add(int x, int y, int z)
+    int add(float, float, float)
+    void add()
+</code></pre>
+<p>这是三个不同的函数，编译器会根据调用函数时的参数类型来选择调用哪个函数。</p>
+<p>2.Operator<br>    ·Unary operator一元运算符: new, delete, new[], delete[], ++, –, +, -, !, (), [], *, &amp;, ~<br>    ·Binary operator二元运算符: +, -, *, &#x2F;, %, &#x3D;, +&#x3D;, -&#x3D;, <em>&#x3D;, &#x2F;&#x3D;, %&#x3D;, &amp;, |, ^, ^&#x3D;, &amp;&#x3D;, |&#x3D;, &#x3D;&#x3D;, !&#x3D;, &lt;, &gt;, &lt;&#x3D;, &gt;&#x3D;, &amp;&amp;, ||, &lt;&lt;, &gt;&gt;, &lt;&lt;&#x3D;, &gt;&gt;&#x3D;, -&gt;, -&gt;</em><br>    ·Other operator<br>        .member selection<br>        .*member selection by a pointer<br>        ::scope resolution<br>        ?:ternary conditional expression<br>        sizeof<br>    you can see operator as a <strong>special type of function</strong>.</p>
+<ol start="3">
+<li></li>
+</ol>
+<pre><code class="cpp">    int i = 10;
+    int* p = &amp;i;
+    void* vp = p;//OK
+    int* ip = vp;//error! 不能用void*指针初始化具体类型的指针
+</code></pre>
+<p>4.reference引用<br>    ·必须要初始化（不同于指针，指针不是必须初始化，只是好习惯是初始化）<br>    ·相当于原变量多了一个名字<br>    ·初始化后不能再次初始化</p>
+<script src="\image\c++1.png"></script>
+
+<p>5.值传递不改变原变量，引用和指针传递改变原变量的值</p>
+<ol start="6">
+<li></li>
+</ol>
+<pre><code class="cpp">    void func1(int*, int*)&#123;&#125;
+    void func2(int&amp; x, int&amp; y)&#123;&#125;
+
+    int a(5), b(6);
+
+    func1(&amp;a, &amp;b); 
+    func1(&amp;5, &amp;6);//error!
+
+    func2(a, b); 
+    func2(5, 6);//OK
+</code></pre>
+<p>7.scope 作用域：{}里面声明的变量只能在当前{}内使用</p>
+<p>8.storage 存储<br>    ·global: 全局变量<br>    ·extern: 外部变量，可以跨文件访问（注意extern是在需要访问的变量前加的，而不是在定义的变量前加的）<br>    ·static: 静态变量<br>        is extant throughout the life of a program<br>        is unavailable outside the scope of the function&#x2F;class&#x2F;file<br>        is initialized only the first time the function is called<br>    ·const: 常量，must always have a initialization value(与C语言#define不同，宏定义只是简单的符号替换，const是真正的常量)<br>    ·volatile: 易变的</p>
+<p>9.static例子</p>
+<pre><code class="cpp">    void func()&#123;
+        static int i = 0;
+        cout &lt;&lt; ++i &lt;&lt; endl;
+    &#125;
+
+    void main()
+    &#123;
+        for(int i = 0; i &lt; 5; i++)
+            func();
+        cout &lt;&lt; i &lt;&lt;endl;//error! i is not defined outside the function
+    &#125;
+</code></pre>
+<p>输出结果是1 2 3 4 5，因为static变量只初始化一次，后面都用之前的值</p>
+<p>10.内部屏蔽外部：例如有一个全局变量a，在一个作用域内又声明了一个局部变量a，那么局部变量a会屏蔽全局变量a，在当前作用域内访问的是局部变量a。</p>
+<p>11.逗号运算符</p>
+<pre><code class="cpp">    int a=0, b=1, c=2, d=3;
+    a = (b, c, d);//a=3
+    (a = b), c, d;//a=1
+</code></pre>
+<ol start="12">
+<li></li>
+</ol>
+<pre><code class="cpp">    int a = 100;
+
+    int b = float(a);
+    int c = (float)a;
+    //上面两种方式都是对的
+</code></pre>
+<p>13.typedef: 给类型取别名，可以简化代码，提高可读性</p>
+<pre><code class="cpp">    typedef int* IntPtr;
+    IntPtr a;
+</code></pre>
+<p>14.enum: 枚举类型，可以定义常量</p>
+<p>15.union: 联合体，可以存储不同类型的数据，但只能访问其中一个成员，不能访问其他成员</p>
+<h2 id="4-Data-Abstraction"><a href="#4-Data-Abstraction" class="headerlink" title="4.Data Abstraction"></a><span id="4">4.Data Abstraction</span></h2><p>1.class defaults to private, whereas struct defaults to public.</p>
+<p>2.每个头文件都应该加上下面这段语句，防止重复包含</p>
+<pre><code class=".h">#ifndef MY_HEADER_H
+#define MY_HEADER_H
+
+//...
+
+#endif // !MY_HEADER_H
+</code></pre>
+<p>同理也应尽量不在头文件中打开namespace</p>
+<p>3.作用域辨析</p>
+<pre><code class="cpp">void func()&#123;&#125;;
+int a;
+
+class S&#123;
+public:
+    int a;
+    void func();
+&#125;;
+
+void S::func()&#123;
+    ::f;//全局函数
+    ::a++;//全局变量
+    a--;//局部变量
+&#125;
+</code></pre>
+<h2 id="5-Hiding-the-Implementation"><a href="#5-Hiding-the-Implementation" class="headerlink" title="5.Hiding the Implementation"></a><span id="5">5.Hiding the Implementation</span></h2><p>1.三个关键词: public, private, protected</p>
+<p>2.friend function: 友元函数，可以访问类的private，<strong>不是类的成员函数，没有this指针</strong></p>
+<p>3.可以作为friend的：<br>    ·global function<br>    ·function of anothor class<br>    ·another class</p>
+<p>4.static数据成员必须要初始化，且只能在类外初始化</p>
+<p>5.作用域辨析</p>
+<pre><code class="cpp">class A&#123;
+    int x;
+    static int y;
+&#125;;
+
+int A::y = 0;
+
+class B&#123;
+public:
+    void set(int i, int j);
+private:
+    A a;
+&#125;
+
+void B::set(int i, int j)&#123;
+    a.x = i;
+    A::y = j;//correct，因为static是该类所有对象共享的
+    a.y = j;//correct，也可以，虽然是公有的但也是a的成员变量
+    a::y = j;//error!作用域运算符前面只能是class或者namespace
+&#125;
+</code></pre>
+<p>6.class中含有struct时，也可以在.h中只声明，然后在.cpp中具体实现</p>
+<h2 id="6-Initialization-and-Clean-up-Constructor-and-Destructor"><a href="#6-Initialization-and-Clean-up-Constructor-and-Destructor" class="headerlink" title="6.Initialization and Clean up(Constructor and Destructor)"></a><span id="6">6.Initialization and Clean up(Constructor and Destructor)</span></h2><p>1.Constructor &amp; Destructor</p>
+<pre><code class="cpp">//在.h中
+class A&#123;
+public:
+    A(int x, int y); // Constructor
+    //A(int, int)也对，因为Constructor可以不用声明形参
+    ~A(); // Destructor
+private:
+    int a;
+    int b;
+&#125;;
+
+//在.cpp中
+A::A(int x, int y):a(x),b(y)&#123;//初始化列表
+//more code
+&#125;
+
+A::~A()&#123;
+    //clean up and resources (such as pointers)
+&#125;
+
+//在main函数中
+&#123;
+A a(1, 2); // Call constructor
+&#125;
+//destructor will be called automatically when a goes out of scope
+</code></pre>
+<p>2.析构顺序：在同一个作用域里，先创建的对象后析构</p>
+<p>3.Constructor can be overloaded</p>
+<p>4.default constructor: one that can be called without any arguments.<br>    ·if a user hasn’t declared any constructor(destructor), the compiler will try to generate a default constructor one.</p>
+<pre><code class="cpp">class A&#123;
+public:
+    A()&#123;&#125;; // default constructor
+    A(int x=0, int y=0):a(x),b(y)&#123;&#125;//default constructor
+&#125;
+</code></pre>
+<pre><code class="cpp">Date date[3];//调用3遍默认构造函数
+date[0] = Date(2025, 5, 9);//调用自定义构造函数，完成赋值后调用析构函数删除临时对象
+date[1] = Date(2025, 5, 10);//同上
+date[2] = Date();//调用默认构造函数，完成赋值后调用析构函数删除临时对象
+</code></pre>
+<h2 id="7-Function-Overloading-adn-Default-Arguments"><a href="#7-Function-Overloading-adn-Default-Arguments" class="headerlink" title="7.Function Overloading adn Default Arguments"></a><span id="7">7.Function Overloading adn Default Arguments</span></h2><p>1.overloading: using the same name for functions on different types<br>    ·the <strong>number</strong> of the arguments √<br>    ·the <strong>type</strong> of the arguments √<br>    ·the <strong>name</strong> of the arguments ×<br>    ·<strong>return type</strong> of the function ×</p>
+<p>2.union can also have constructors, destructors, and member functions,but can not use as a base class</p>
+<p>3.default arguments: 缺省参数，可以让函数调用时省略参数，从而使用默认值。</p>
+<pre><code class="cpp">class Date&#123;
+    int year, month, day;
+public:
+    Date(int y=0, int m=0, int d=0):year(y),month(m),day(d)&#123;&#125;;
+&#125;
+
+void main&#123;
+    Data d1();
+    Data d2(2025);
+    Data d3(2025, 5);
+    Data d4(2025, 5, 9);
+&#125;
+</code></pre>
+<p>4.default arguments may be provided for trailing arguments only from right to left</p>
+<pre><code class="cpp">void func1(int, int=0, char*=0);//OK
+void func2(int=0, int, int*=0);//error!
+</code></pre>
+<p>5.default arguments can be literals, constants or expressions</p>
+<pre><code class="cpp">int f;
+void func(int k, int time=f());
+</code></pre>
+<p>6.default arguments can be initialized only once int the same scope</p>
+<pre><code>void func(int x=10);
+void func(int x=20); //error:redefinition
+</code></pre>
+<p>7.arguments in a function declaration can be declared without identifiers</p>
+<pre><code class="cpp">void func(int x, int = 0, float = 1.1);
+</code></pre>
+<p>you don’t need identifiers in the function definition, either</p>
+<pre><code class="cpp">void func(int x, int, float y)&#123;
+    //...
+    //x and y can be referenced, but no the middle argument, because it has no name
+    //像这种不给名字的一般只用来区分函数重载
+&#125;
+</code></pre>
+<h2 id="8-Constants"><a href="#8-Constants" class="headerlink" title="8.Constants"></a><span id="8">8.Constants</span></h2><p>1.一定要初始化、只能初始化一次、初始化后不能再改变</p>
+<p>2.const is a internal linkage,  can be used only in the same file.(not the whole program)</p>
+<p>3.Pointer to const VS const Pointer</p>
+<pre><code class="cpp">char s[] = &#123;&#39;w&#39;, &#39;h&#39;, &#39;o&#39;&#125;;
+const char* pc = s; // pointer to a constant
+pc[1] = i; // error: pc points to a constant
+pc = &#39;Hi&#39;; // OK
+
+char* const cp = s; // constant pointer
+cp[1] = i; //OK
+cp = &#39;Hi&#39;; // error: cp is a constant
+
+const char* const cpc = s; // constant
+cpc[1] = i; // error: cpc points to a constant
+cpc = &#39;Hi&#39;; // error: cpc is a constant
+</code></pre>
+<p>4.the address of a constant can only be assighned to a pointer to constant</p>
+<pre><code class="cpp">const float f1 = 5.0;
+float f2 = 0.0;
+
+float* p1 = &amp;f1; // error: 
+float* const p2 = &amp;f1; // error: 
+const float* p3 = &amp;f1; // OK
+
+float* p4 = &amp;f2; // OK
+float* const p5 = &amp;f2; // OK
+const float* p6 = &amp;f2; // OK
+</code></pre>
+<p>5.如果返回值是一个const，则不能放在等号左边；可以用const给非const初始化，只能用const给const初始化</p>
+<p>6.compiler创建的temparary对象会被视为const</p>
+<p>7.class 中的static和const：</p>
+<pre><code class="cpp">class A&#123;
+    static int obj;//static data member, must be initialized outside the class
+    const int a; // const data member,must be initialized in the member initialization list of constructor
+    //新版本也可以直接在定义的时候给const初始化，但是如果初始化列表里也有的话优先执行初始化列表的赋值
+    static const int b; // static const
+    void add(const int&amp; x) // const insure that the address will not be modified occasionally
+    void print() const; // const member function, do not modify the data members
+public:
+    A(int x); 
+&#125;
+
+int A::obj = 0; // no static keyword, qualified by class name
+A::A(int x):a(x)&#123;&#125; // constructor with a const data member
+const int A::b = 10; // no static keyword, but const keyword is required
+
+void main()
+&#123;
+    const A a(10); //const object, no data members of the object are changed during the lifetime of the object
+    //for const objects, only const member functions can be invokeed
+&#125;
+</code></pre>
+<p>8.for const objects, only const member functions can be invoked</p>
+<p>9.mutable: 可以在const成员函数中修改mutable数据成员</p>
+<h2 id="9-Inline-Functions"><a href="#9-Inline-Functions" class="headerlink" title="9.Inline Functions"></a><span id="9">9.Inline Functions</span></h2><p>1.如果函数比较简单，执行函数的时间小于函数调用的时间，当需要多次调用函数时，会有很大时间开销，这时可以用inline函数来优化（原理类似于宏定义）</p>
+<p>2.inline函数的定义必须在调用之前；在类外定义时必须加上inline关键字；inline函数应该与类定义在同一个文件中</p>
+<p>3.any function you <strong>define</strong> in a class definition is automatically inline</p>
+<p>4.inline与define比较</p>
+<script src="\image\c++2.png"></script>
+
 <h2 id="10-Name-Control"><a href="#10-Name-Control" class="headerlink" title="10.Name Control"></a><span id="10">10.Name Control</span></h2><h3 id="一、static（复习"><a href="#一、static（复习" class="headerlink" title="一、static（复习"></a>一、static（复习</h3><p>1.static 的作用区间是当前文件整个程序的运行期间。static只被创建一次</p>
 <p>2.static, const, inline只在一个编译单元起作用（所以inline函数应该定义在头文件中）</p>
 <p>3.class中static变量初始化要在class外，且不要再加static；static成员变量不可以在类内初始化，因为static成员变量是属于类的，不是属于对象的，所以不能在类内初始化，否则会报错</p>

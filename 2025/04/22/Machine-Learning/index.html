@@ -198,14 +198,14 @@
             
             <span class="tag">
                 
-                <a href="/tags/ML/" style="color: #ffa2c4">
+                <a href="/tags/ML/" style="color: #00a596">
                     ML
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/python/" style="color: #00a596">
+                <a href="/tags/python/" style="color: #00bcd4">
                     python
                 </a>
             </span>
@@ -260,10 +260,11 @@ y = np.dot(w, x) + b
 <p>KNN K临近算法<br>    计算新样本与所有训练样本的距离（常用欧氏距离），选取K个最近邻，若分类，统计K个邻居的标签，投票决定新样本的类别；若回归，取均值作为结果</p>
 <p>CNN 卷积神经网络：用于处理图像的神经网络。比如识别猫🐱、狗🐶、人脸、数字图像等。<br>    卷积层（Convolution）	用“滤镜”扫描图片，提取边缘、纹理等特征（就像打格子）<br>    池化层（Pooling）	压缩图像尺寸，保留重要特征（比如选最大值 Max Pooling）<br>    激活函数（ReLU）	加非线性，让模型能学更复杂的东西<br>    全连接层（FC）	把提取到的特征“整合”做最终分类，比如输出：猫&#x2F;狗&#x2F;人</p>
 <p>DQN 深度Q网络：强化学习+深度学习结合，用来玩游戏、机器人控制。比如让AI学会玩贪吃蛇、Flappy Bird、Atari游戏。<br>    Q-Learning	强化学习算法：记录“在某状态下做某动作的价值”Q值<br>    深度网络	用神经网络代替传统的Q表，能处理复杂状态（比如游戏画面）<br>    状态（state）	当前环境信息，比如：游戏画面、坐标、血量等<br>    动作（action）	AI能做的选择，比如“跳”或“不跳”<br>    奖励（reward）	做对了给分，做错了扣分，学会最大化长期奖励</p>
-<p>MDP 马尔科夫决策过程：当前状态只由“上一步”决定，跟更早的历史无关。<br>    要素	       含义	                举例（玩游戏）<br>    S（状态）	   当前处于什么环境	      游戏画面<br>    A（动作）	   可以做哪些选择	      跳、不跳<br>    R（奖励）	   执行动作后得到的分数	   +1 或 -10<br>    T（状态转移）	执行动作后到哪儿了	   跳后位置变了<br>    γ（折扣因子）	未来奖励的重要程度	   0.9 代表未来奖励也重要</p>
+<p>MDP 马尔科夫决策过程：当前状态只由“上一步”决定，跟更早的历史无关。<br>    要素	       含义	                举例（玩游戏）<br>    S（状态）	   当前处于什么环境	      游戏画面<br>    A（动作）	   可以做哪些选择	      跳、不跳<br>    R（奖励）	   执行动作后得到的分数	   +1 或 -10<br>    T（状态转移）	执行动作后到哪儿了	   跳后位置变了<br>    γ（折扣因子）	未来奖励的重要程度	   0.9 代表未来奖励也重要pppppp-ppppppppppppppppppppppppPpppppppppppppppppppppppppppppppp </p>
 <p>Q-Learning 强化学习算法：用一个 Q 表，记录每个状态下选择动作的价值 Q(s, a)，不断学习哪个动作在长期更划算。最终找到一个策略 π，使得 累积奖励最大<br>    更新公式：Q(s, a) &#x3D; Q(s, a) + α(R + γ max Q(s’, a’) - Q(s, a))<br>    其中，α 是学习率，R 是奖励，γ 是折扣因子，s’ 是下一个状态，max_a Q(s’, a) 是预测下一步最优动作的价值<br>    例如，走迷宫<br>        状态：你的位置<br>        动作：向上&#x2F;下&#x2F;左&#x2F;右<br>        奖励：走到出口 +10，撞墙 -1<br>        目标：找到走出迷宫的最优策略</p>
 <p>感知机：简单的线性分类器，错了就修正权重，能分类线性可分数据<br>    输入层: 接受特征，比如<br>$$ x_1, x_2, \ldots, x_n $$<br>    权重: 每个输入有对应的权重<br>$$ w_1, w_2, \ldots, w_n $$<br>    加权求和:<br>$$ z &#x3D; w_1x_1 + w_2x_2 + \cdots + w_nx_n + b  $$<br>    激活函数: 通常使用符号函数（Sign function）判断输出是1还是-1:<br>$$ \text{output} &#x3D; \begin{cases} 1, &amp; z &gt; 0 \ -1, &amp; z \leq 0 \end{cases} $$<br>    感知机学习规则:每次预测错了，就调整权重：<br>$$ w \leftarrow w + \Delta w $$<br>    其中：<br>$$ \Delta w &#x3D; \alpha(y_{\text{真实}} - y_{\text{预测}})x $$  </p>
 <p>MLP 多层感知机：最基础的前馈神经网络（Feedforward Neural Network），也是神经网络的入门结构<br><image src="\images\ML1.png"></p>
+<p>决策树：一种基本的分类与回归方法，可以用来做分类、回归、预测等任务。<br>                 是否有车？<br>                &#x2F;         <br>             是             否<br>           &#x2F;                 <br>      年龄&gt;30？           收入高？<br>       &#x2F;     \             &#x2F;     <br>    …      …        …     …<br>    每个节点：一个决策问题（特征）<br>    每条边：一个回答（是&#x2F;否、多&#x2F;少）<br>    每个叶子节点：一个最终预测结果（分类或数值）</p>
 <h2 id="考试复习"><a href="#考试复习" class="headerlink" title="考试复习"></a>考试复习</h2><ol>
 <li><p>机器学习基础</p>
 <ul>
