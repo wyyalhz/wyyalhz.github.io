@@ -214,6 +214,12 @@
 <ul>
 <li><a href="#1">1.Class and Object</a></li>
 <li><a href="#3">3.The C in C++</a></li>
+<li>[4.Data Abstraction]</li>
+<li><a href="#5">5.Hiding the Implementation</a></li>
+<li><a href="#6">6.Initializ and Clean up</a></li>
+<li><a href="#7">7.Function Overloading adn Default Arguments</a></li>
+<li><a href="#8">8.Contants</a></li>
+<li><a href="#9">9.Inline Function</a></li>
 <li><a href="#10">10.Name Control</a></li>
 <li><a href="#11">11.References &amp; the Copy-Constructor</a></li>
 <li><a href="#12">12.Operator Overloading</a></li>
@@ -695,7 +701,13 @@ delete[] ptr; // 释放数组
 <p>2.虚函数的核心目的是通过基类访问派生类定义的函数，实现运行时多态。</p>
 <p>3.虚函数的声明：virtual 返回值类型 函数名(参数表) const;<br>  虚函数不能是static的，因为static函数属于类本身，与对象无关，不能被多态调用。</p>
 <p>4.虚函数只需要在声明时加上关键字virtual，在类外定义时不加。</p>
-<p>5.polymorphic条件：<br>    - 基类中有virtual函数<br>    - 派生类继承为public<br>    - 派生类中函数参数列表与基类中函数参数列表一致<br>    - 基类通过指针或引用指向派生类对象，调用虚函数<br>    <code>cpp     //A是基类，B是派生类     B b;     A* pa = &amp;b; //或A &amp;ra = b;但不能是A a = b,因为这样在运行之前就已经确定了对象的类型     pa-&gt;func(); // 调用的是B的func函数     //如果B中有A中没有的函数，那么pa无法调用，因为此时pa是A类对象     </code></p>
+<p>5.polymorphic条件：<br>    - 基类中有virtual函数<br>    - 派生类继承为public<br>    - 派生类中函数参数列表与基类中函数参数列表一致<br>    - 基类通过指针或引用指向派生类对象，调用虚函数</p>
+<pre><code class="cpp">    //A是基类，B是派生类
+    B b;
+    A* pa = &amp;b; //或A &amp;ra = b;但不能是A a = b,因为这样在运行之前就已经确定了对象的类型
+    pa-&gt;func(); // 调用的是B的func函数
+    //如果B中有A中没有的函数，那么pa无法调用，因为此时pa是A类对象
+</code></pre>
 <p>6.abstract class：抽象类，不能实例化，只能作为基类被继承，不能创建对象，只能作为接口使用。包含纯虚函数的类就是抽象类。但可以声明抽象类引用或指向抽象类的指针。</p>
 <pre><code class="cpp">class Shape&#123;
 public:
