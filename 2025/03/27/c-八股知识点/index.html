@@ -198,7 +198,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/c/" style="color: #ff7d73">
+                <a href="/tags/c/" style="color: #00bcd4">
                     c++
                 </a>
             </span>
@@ -249,7 +249,7 @@
     void* vp = p;//OK
     int* ip = vp;//error! 不能用void*指针初始化具体类型的指针
 </code></pre>
-<p>4.reference引用<br>    ·必须要初始化（不同于指针，指针不是必须初始化，只是好习惯是初始化）<br>    ·相当于原变量多了一个名字<br>    ·初始化后不能再次初始化<br><image src="\image\c++1.png"></p>
+<p>4.reference引用<br>    ·必须要初始化（不同于指针，指针不是必须初始化，只是好习惯是初始化）<br>    ·相当于原变量多了一个名字<br>    ·初始化后不能再次初始化<br><image src="/image/c++1.png"></p>
 <p>5.值传递不改变原变量，引用和指针传递改变原变量的值</p>
 <ol start="6">
 <li></li>
@@ -491,7 +491,7 @@ void main()
 <h2 id="9-Inline-Functions"><a href="#9-Inline-Functions" class="headerlink" title="9.Inline Functions"></a><span id="9">9.Inline Functions</span></h2><p>1.如果函数比较简单，执行函数的时间小于函数调用的时间，当需要多次调用函数时，会有很大时间开销，这时可以用inline函数来优化（原理类似于宏定义）</p>
 <p>2.inline函数的定义必须在调用之前；在类外定义时必须加上inline关键字；inline函数应该与类定义在同一个文件中</p>
 <p>3.any function you <strong>define</strong> in a class definition is automatically inline</p>
-<p>4.inline与define比较<br><image src="\image\c++2.png"></p>
+<p>4.inline与define比较<br><image src="/image/c++2.png"></p>
 <h2 id="10-Name-Control"><a href="#10-Name-Control" class="headerlink" title="10.Name Control"></a><span id="10">10.Name Control</span></h2><h3 id="一、static（复习"><a href="#一、static（复习" class="headerlink" title="一、static（复习"></a>一、static（复习</h3><p>1.static 的作用区间是当前文件整个程序的运行期间。static只被创建一次</p>
 <p>2.static, const, inline只在一个编译单元起作用（所以inline函数应该定义在头文件中）</p>
 <p>3.class中static变量初始化要在class外，且不要再加static；static成员变量不可以在类内初始化，因为static成员变量是属于类的，不是属于对象的，所以不能在类内初始化，否则会报错</p>
