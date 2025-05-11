@@ -198,7 +198,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/c/" style="color: #00bcd4">
+                <a href="/tags/c/" style="color: #00a596">
                     c++
                 </a>
             </span>
@@ -679,10 +679,10 @@ ptr = nullptr; // good practice
 delete[] ptr; // 释放数组
 </code></pre>
 <p>3.对于有指针成员变量的类，一定要自己定义拷贝构造函数和赋值函数，否则会出现浅拷贝的问题，导致内存泄漏或重复释放内存。深拷贝的格式为X::X(const X&amp; x):a(new int(*x.a)),b(x.b){}，其中a是指针成员变量，b是普通成员变量</p>
-<h2 id="Inheritance-Composition"><a href="#Inheritance-Composition" class="headerlink" title="Inheritance &amp; Composition"></a><span id="14">Inheritance &amp; Composition</span></h2><p>1.从基类继承来的函数，如果子类没有重写，那么调用的是基类的函数，里面的变量是基类的变量，而不是子类的变量。</p>
+<h2 id="14-Inheritance-Composition"><a href="#14-Inheritance-Composition" class="headerlink" title="14.Inheritance &amp; Composition"></a><span id="14">14.Inheritance &amp; Composition</span></h2><p>1.从基类继承来的函数，如果子类没有重写，那么调用的是基类的函数，里面的变量是基类的变量，而不是子类的变量。</p>
 <p>2.基类必须在派生类之前定义，否则编译器会报错，不能只声明不定义。</p>
 <p>3.继承与组合的本质区别：继承是is-a关系，组合是has-a关系。</p>
-<p>4.派生类对象构造顺序：先构造基类，再构造派生类。注意不是按初始化列表顺序，而是派生类中的基类继承顺序和成员变量声明顺序。</p>
+<p>4.派生类对象构造顺序：先构造基类，再构造派生类。注意不是按初始化列表顺序，而是派生类中的<strong>基类继承顺序和成员变量声明顺序</strong>。</p>
 <p>6.不能继承到派生类的函数：Constructor, Destructor, Operator Overloading</p>
 <p>7.继承的三个关键词：public, private, protected</p>
 <p>8.通过private继承后，不能直接使用基类成员，可以间接访问。</p>
@@ -693,7 +693,7 @@ delete[] ptr; // 释放数组
 <li>虚基类（当派生类从多个基类派生，而这些基类又有共同基类，则一开始就将共同基类设为虚基类，这样派生类就可以继承该基类的成员函数）</li>
 </ul>
 <p>10.派生类定义了名字相同的数据成员，则会隐藏基类的同名数据成员，如果需要访问基类的同名数据成员可以用作用域限定符。</p>
-<h2 id="Polymorphism-Virtual-Functions"><a href="#Polymorphism-Virtual-Functions" class="headerlink" title="Polymorphism &amp; Virtual Functions"></a><span id="15">Polymorphism &amp; Virtual Functions</span></h2><p>1.polymorphism与overloading的区别：overloading是编译时重载，polymorphism是运行时多态。<br>    - overriding：子类重新定义基类中的虚函数，使得派生类对象调用该函数时，调用的是子类的函数。如果派生类没有重写该函数，那么调用的是基类的函数。<br>    - overloading：同一个作用域中，可以有多个同名函数，只要参数列表不同即可。</p>
+<h2 id="15-Polymorphism-Virtual-Functions"><a href="#15-Polymorphism-Virtual-Functions" class="headerlink" title="15.Polymorphism &amp; Virtual Functions"></a><span id="15">15.Polymorphism &amp; Virtual Functions</span></h2><p>1.polymorphism与overloading的区别：overloading是编译时重载，polymorphism是运行时多态。<br>    - overriding：子类重新定义基类中的虚函数，使得派生类对象调用该函数时，调用的是子类的函数。如果派生类没有重写该函数，那么调用的是基类的函数。<br>    - overloading：同一个作用域中，可以有多个同名函数，只要参数列表不同即可。</p>
 <p>2.虚函数的核心目的是通过基类访问派生类定义的函数，实现运行时多态。</p>
 <p>3.虚函数的声明：virtual 返回值类型 函数名(参数表) const;<br>  虚函数不能是static的，因为static函数属于类本身，与对象无关，不能被多态调用。</p>
 <p>4.虚函数只需要在声明时加上关键字virtual，在类外定义时不加。</p>
